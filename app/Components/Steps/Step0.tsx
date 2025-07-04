@@ -1,13 +1,18 @@
+
 interface Step0Props {
     escolherPlano: (plano: string) => void
 }
 
 export default function Step0({ escolherPlano }: Step0Props) {
+
+
+
+
+
     return (
         <div className="flex flex-col items-center space-y-6 mt-10">
             <h2 className="text-white text-2xl font-bold">Escolha o plano do seu presente</h2>
             <div className="flex flex-col sm:flex-row gap-4 w-[80%]">
-
 
 
 

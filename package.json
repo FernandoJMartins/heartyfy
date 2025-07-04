@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@mercadopago/sdk-react": "github:mercadopago/sdk-react",
+    "@mercadopago/sdk-react": "^1.0.3",
     "mercadopago": "^2.8.0",
     "next": "15.3.4",
     "react": "^19.0.0",

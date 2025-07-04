@@ -7,10 +7,13 @@ import BrowserMockup from '../Components/BrowserMockup';
 import { useState } from 'react';
 import MusicSearch from '../Components/MusicSearch';
 import Step0 from '../Components/Steps/Step0';
-
+import useMercadoPago from '../hooks/useMercadoPago';
 
 
 export default function Root() {
+
+    const { createMercadoPagoCheckout } = useMercadoPago();
+
 
     const [value, setValue] = useState(10); // Progress bar value
     const [step, setStep] = useState(0);
@@ -24,6 +27,8 @@ export default function Root() {
     const [description, setDescription] = useState('');
     const [dataInicio, setDataInicio] = useState('');
 
+    const [unit_price, setUnitPrice] = useState(16.90); // Valor do produto
+
 
     function handleEscolherPlano(plano: string) {
         escolherPlano(plano);
@@ -35,15 +40,18 @@ export default function Root() {
             setPlano('mensal');
             setStep(1);
             setValue(20);
+            setUnitPrice(16.90); // Valor do plano mensal
         }
         if (plano === 'anual') {
             setPlano('anual');
             setStep(1);
             setValue(20);
+            setUnitPrice(19.90); // Valor do plano anual
         } else if (plano === 'vitalicio') {
             setPlano('vitalicio');
             setStep(1);
             setValue(20);
+            setUnitPrice(46.90); // Valor do plano vitalício
         }
     };
 
@@ -300,7 +308,11 @@ export default function Root() {
                                 if (plano !== 'mensal') {
                                     setStep(5); window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }); setValue(95);
                                 } else {
-                                    setStep(7); window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }); setValue(100)
+                                    setStep(7); createMercadoPagoCheckout({
+                                        testeId: "123",
+                                        userEmail: "loveyu2uqr@gmail.com",
+                                        unit_price: unit_price
+                                    }); window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }); setValue(100)
                                 };
                             }}
                             className='bg-gradient-to-br from-pink-600 to-pink-700 w-full text-white px-4 py-2 rounded-md mt-4 hover:bg-[#A61D4B] transition-colors duration-300'>
@@ -429,13 +441,27 @@ ${estiloBackground === value
 
                         {/* botao de fundo personalizado musica e etc */}
                         <button
-                            onClick={() => { setStep(7); window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }); setValue(100); }}
+                            onClick={() => {
+                                setStep(7); createMercadoPagoCheckout({
+                                    testeId: "123",
+                                    userEmail: "loveyu2uqr@gmail.com",
+                                    unit_price: unit_price
+                                });
+                                window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }); setValue(100);
+                            }}
                             className='bg-gradient-to-br from-pink-600 to-pink-700 w-full text-white px-4 py-2 rounded-md mt-4 hover:bg-[#A61D4B] transition-colors duration-300'>
-                            Próxima Etapa
+                            Realizar Pagamento
                         </button>
                     </div>
                 </div>
+
+
+
+
             </div>
+
+
+
 
 
             <BrowserMockup url={url}
