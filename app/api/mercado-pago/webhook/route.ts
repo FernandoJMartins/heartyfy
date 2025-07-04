@@ -9,6 +9,10 @@ export async function POST(request: Request) {
 
     try {
 
+        console.log('Public Key:', process.env.NEXT_PUBLIC_MERCADO_PAGO_PUBLIC_KEY);
+        console.log("ACCESS_TOKEN:", process.env.MERCADO_PAGO_ACCESS_TOKEN);
+        console.log("WEBHOOK_SECRET:", process.env.MERCADO_PAGO_WEBHOOK_SECRET);
+
         verifyMercadoPagoSignature(request);
 
         const body = await request.json();
