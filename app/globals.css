@@ -5,12 +5,7 @@
   --foreground: #171717;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -20,7 +15,46 @@
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+
+  background-color: #11011A;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+
+h3,
+navbar li {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.75rem;
+  color: #7C5E99
+}
+
+h1,
+a {
+  color: #C2255C
+}
+
+
+button {
+  cursor: pointer;
+}
+
+#heartIcon {
+  display: inline-block;
+  background-color: #f5f5f5;
+  /* branco mais escuro */
+  border-radius: 50%;
+  padding: 0.1px;
+  /* bem pequeno para não "engordar" */
+  width: 30px;
+  height: 30px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  object-fit: contain;
+  /* garante que o ícone não distorça */
+}
+
+#icon {
+
+  border: white 2px solid;
+  border-radius: 50%;
 }
