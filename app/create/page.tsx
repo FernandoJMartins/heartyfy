@@ -4,30 +4,78 @@ import '../globals.css';
 import Navbar from '../Components/Navbar';
 import ProgressBar from '../Components/ProgressBar';
 import BrowserMockup from '../Components/BrowserMockup';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import MusicSearch from '../Components/MusicSearch';
 import Step0 from '../Components/Steps/Step0';
 import useMercadoPago from '../hooks/useMercadoPago';
+import useFirebase from '../hooks/useFirebase'
 
+import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
+import { storage } from '@/app/lib/firebase'
 
 export default function Root() {
 
     const { createMercadoPagoCheckout } = useMercadoPago();
-
+    const { createFirebaseCheckout } = useFirebase();
 
     const [value, setValue] = useState(10); // Progress bar value
     const [step, setStep] = useState(0);
+
+
+
     const [fotos, setFotos] = useState<File[]>([]);
+    const [urlFotos, setUrlFotos] = useState<string[]>([]);
+
+
+
+    const handleChangeFoto = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const files = event.target.files;
+        if (files) {
+            const selectedFiles = Array.from(files);
+            setFotos(selectedFiles);
+            handleUpload();
+        }
+    };
+
+
+    const handleUpload = async () => {
+        const downloadUrls: string[] = [];
+
+
+        for (const f of fotos) {
+            const storageRef = ref(storage, `fotos/${f.name}`);
+            const snapshot = await uploadBytes(storageRef, f);
+            const downloadUrl = await getDownloadURL(snapshot.ref);
+            downloadUrls.push(downloadUrl);
+            console.log('uploaded', f.name)
+        }
+
+        setUrlFotos(downloadUrls);
+        // Aqui você pode salvar as URLs no Firestore
+    };
+
+
+
+
+
     const [plano, setPlano] = useState('vitalicio');
     const [estiloFoto, setEstiloFoto] = useState('classico');
     const [estiloBackground, setEstiloBackground] = useState('preto');
 
     const [url, setUrl] = useState('https://www.heartyfy.site/');
+
+    const [slug, setSlug] = useState(url);
+
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [dataInicio, setDataInicio] = useState('');
 
     const [unit_price, setUnitPrice] = useState(16.90); // Valor do produto
+
+
+
+
+
 
 
     function handleEscolherPlano(plano: string) {
@@ -60,14 +108,6 @@ export default function Root() {
 
 
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const files = event.target.files;
-        if (files) {
-            const selectedFiles = Array.from(files);
-            setFotos(selectedFiles);
-        }
-    };
-
 
 
 
@@ -87,6 +127,9 @@ export default function Root() {
     const makeUrl = (title: string) => {
         const formattedTitle = title.toLowerCase().replace(/\s+/g, '-');
         setUrl(`https://www.heartyfy.site/${formattedTitle}`);
+
+
+        setSlug(formattedTitle)
     };
 
 
@@ -114,6 +157,7 @@ export default function Root() {
 
             <div>
                 {step === 1 && (
+
 
                     <div className="flex flex-col items-center mt-10 space-y-3">
                         <div className="w-[80%]">
@@ -236,14 +280,19 @@ export default function Root() {
                         {plano !== 'mensal' ? (
                             <div>
                                 <div className='text-white'>Clique aqui para adicionar sua foto(s)</div>
+
+
                                 <input
                                     id='images'
                                     type="file"
                                     multiple
                                     accept="image/*"
                                     className="hidden"
-                                    onChange={handleChange}
+                                    onChange={handleChangeFoto}
                                 />
+
+
+
                             </div>
 
 
@@ -256,7 +305,7 @@ export default function Root() {
                                     multiple={false}
                                     accept="image/*"
                                     className="hidden"
-                                    onChange={handleChange}
+                                    onChange={handleChangeFoto}
                                 />
                             </div>
                         )}
@@ -308,11 +357,20 @@ export default function Root() {
                                 if (plano !== 'mensal') {
                                     setStep(5); window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }); setValue(95);
                                 } else {
-                                    setStep(7); createMercadoPagoCheckout({
-                                        testeId: "123",
-                                        userEmail: "loveyu2uqr@gmail.com",
-                                        unit_price: unit_price
-                                    }); window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }); setValue(100)
+                                    setStep(7);
+
+                                    // createMercadoPagoCheckout({
+                                    //     testeId: "123",
+                                    //     userEmail: "loveyu2uqr@gmail.com",
+                                    //     unit_price: unit_price
+                                    // });
+
+                                    createFirebaseCheckout(slug);
+
+                                    window.scrollTo({
+                                        top: 0, left: 0,
+                                        behavior: 'smooth'
+                                    }); setValue(100)
                                 };
                             }}
                             className='bg-gradient-to-br from-pink-600 to-pink-700 w-full text-white px-4 py-2 rounded-md mt-4 hover:bg-[#A61D4B] transition-colors duration-300'>
@@ -442,11 +500,30 @@ ${estiloBackground === value
                         {/* botao de fundo personalizado musica e etc */}
                         <button
                             onClick={() => {
-                                setStep(7); createMercadoPagoCheckout({
-                                    testeId: "123",
-                                    userEmail: "loveyu2uqr@gmail.com",
-                                    unit_price: unit_price
-                                });
+                                setStep(7); console.log('slug1: ', slug)
+
+
+                                // createMercadoPagoCheckout({
+                                //     testeId: "123",
+                                //     userEmail: "loveyu2uqr@gmail.com",
+                                //     unit_price: unit_price
+                                // });
+
+                                createFirebaseCheckout(
+                                    {
+                                        slug: slug,
+                                        title: title,
+                                        description: description,
+                                        dataInicio: dataInicio,
+                                        fotos: fotos,
+                                        estiloFoto: estiloFoto,
+                                        estiloBackground: estiloBackground,
+
+
+                                    }
+                                );
+
+
                                 window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }); setValue(100);
                             }}
                             className='bg-gradient-to-br from-pink-600 to-pink-700 w-full text-white px-4 py-2 rounded-md mt-4 hover:bg-[#A61D4B] transition-colors duration-300'>
@@ -468,7 +545,7 @@ ${estiloBackground === value
                 title={title}
                 description={description}
                 dataInicio={dataInicio}
-                fotos={fotos}
+                urlFotos={urlFotos}
                 estiloFoto={estiloFoto}
                 estiloBackground={estiloBackground}
             />

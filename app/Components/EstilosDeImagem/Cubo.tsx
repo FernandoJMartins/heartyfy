@@ -8,7 +8,7 @@ import 'swiper/css/pagination';
 
 
 interface CuboProps {
-    fotos: File[];
+    fotos: string[];
 }
 
 export default function Cubo({ fotos }: CuboProps) {
@@ -42,7 +42,7 @@ export default function Cubo({ fotos }: CuboProps) {
                 fotos.map((foto, i) => (
                     <SwiperSlide key={i}>
                         <img
-                            src={URL.createObjectURL(foto)}
+                            src={foto}
                             alt={`Slide ${i}`}
                             className="object-cover w-full h-[300px] lg:h-[350px] rounded-lg z-99999"
                         />

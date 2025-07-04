@@ -9,7 +9,7 @@ import 'swiper/css/pagination';
 
 
 interface CarrosselProps {
-    fotos: File[];
+    fotos: string[];
 }
 
 export default function Carrossel({ fotos }: CarrosselProps) {
@@ -46,7 +46,7 @@ export default function Carrossel({ fotos }: CarrosselProps) {
             {fotos.map((foto, i) => (
                 <SwiperSlide key={i} className='flex items-center justify-center'>
                     <img
-                        src={URL.createObjectURL(foto)}
+                        src={foto}
                         alt={`Slide ${i}`}
                         className="object-cover w-[80%] mx-auto h-[300px] lg:h-[350px] rounded-lg z-99999"
                     />

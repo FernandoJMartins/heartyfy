@@ -8,7 +8,7 @@ import 'swiper/css/pagination';
 
 
 interface RomanticoProps {
-    fotos: File[];
+    fotos: string[];
 }
 
 export default function Romantico({ fotos }: RomanticoProps) {
@@ -28,7 +28,7 @@ export default function Romantico({ fotos }: RomanticoProps) {
             {fotos.map((foto, i) => (
                 <SwiperSlide key={i}>
                     <img
-                        src={URL.createObjectURL(foto)}
+                        src={foto}
                         alt={`Slide ${i}`}
                         className="object-cover w-full h-[300px] lg:h-[350px] rounded-lg z-99999"
                     />

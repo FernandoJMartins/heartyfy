@@ -6,17 +6,18 @@ import Classico from "./EstilosDeImagem/Classico";
 import Cubo from "./EstilosDeImagem/Cubo";
 import Romantico from "./EstilosDeImagem/Romantico";
 
+
 type Props = {
     url: string;
     title: string;
     description: string;
     dataInicio: string;
-    fotos: File[];
+    urlFotos: string[];
     estiloFoto: string;// Array of File objects for photos
     estiloBackground?: string; // Optional background style
 };
 
-export default function BrowserMockup({ url, title, description, dataInicio, fotos, estiloFoto, estiloBackground }: Props) {
+export default function BrowserMockup({ url, title, description, dataInicio, urlFotos, estiloFoto, estiloBackground }: Props) {
 
 
     let bgColor = '#1e1e1e'; // Default color
@@ -37,10 +38,11 @@ export default function BrowserMockup({ url, title, description, dataInicio, fot
     const [tempo, setTempo] = useState('');
 
 
-    const [fotosState, setFotosState] = useState<File[]>(fotos);
+    const [fotosState, setFotosState] = useState<string[]>([]);
+
     useEffect(() => {
-        setFotosState(fotos);
-    }, [fotos]);
+        setFotosState(urlFotos);
+    }, [urlFotos]);
 
 
 
@@ -50,11 +52,11 @@ export default function BrowserMockup({ url, title, description, dataInicio, fot
 
     useEffect(() => {
         const intervalo = setInterval(() => {
-            setIndexAtual((prev) => (prev + 1) % fotos.length);
+            setIndexAtual((prev) => (prev + 1) % urlFotos.length);
         }, 4000);
 
         return () => clearInterval(intervalo);
-    }, [fotos.length]);
+    }, [urlFotos.length]);
 
 
 
@@ -142,7 +144,7 @@ export default function BrowserMockup({ url, title, description, dataInicio, fot
 
             <div className="flex flex-col items-center justify-center p-6 min-h-[300px] ">
 
-                {fotos.length > 0 ? (
+                {urlFotos.length > 0 ? (
 
 
 
@@ -156,10 +158,10 @@ export default function BrowserMockup({ url, title, description, dataInicio, fot
 
 
 
-                        {(fotos.length === 1) ? (
+                        {(urlFotos.length === 1) ? (
 
                             <img
-                                src={URL.createObjectURL(fotos[0])}
+                                src={(urlFotos[0])}
                                 alt="Foto do Casal"
                                 className="w-64 h-64 object-cover rounded-sm "
                             />
@@ -171,7 +173,7 @@ export default function BrowserMockup({ url, title, description, dataInicio, fot
 
                                 {estiloFoto === 'classico' && (
                                     <div className='w-[80%] mx-auto h-full'>
-                                        <Classico fotos={fotos} />
+                                        <Classico fotos={urlFotos} />
                                     </div>
                                 )}
 
@@ -181,21 +183,21 @@ export default function BrowserMockup({ url, title, description, dataInicio, fot
 
                                 {estiloFoto === 'carrossel' && (
                                     <div className='w-full mx-auto h-full'>
-                                        <Carrossel fotos={fotos} />
+                                        <Carrossel fotos={urlFotos} />
                                     </div>
 
                                 )}
 
                                 {estiloFoto === 'cubo' && (
                                     <div className='w-[full] mx-auto h-full'>
-                                        <Cubo fotos={fotos} />
+                                        <Cubo fotos={urlFotos} />
                                     </div>
                                 )}
 
 
                                 {estiloFoto === 'romantico' && (
                                     <div className='w-[full] mx-auto h-full'>
-                                        <Romantico fotos={fotos} />
+                                        <Romantico fotos={urlFotos} />
                                     </div>
                                 )}
 
