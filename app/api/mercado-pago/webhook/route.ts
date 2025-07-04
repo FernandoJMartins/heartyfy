@@ -19,6 +19,9 @@ export async function POST(request: Request) {
 
             case 'payment':
                 const paymentId = data.id;
+
+                if (!paymentId) throw new Error("paymentId não encontrado");
+
                 const paymentClient = new Payment(mpClient);
                 const paymentData = await paymentClient.get({ id: paymentId });
 
