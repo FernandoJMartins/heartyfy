@@ -1,13 +1,13 @@
 import getSiteDataBySlug from '@/app/lib/data';
 import BrowserMockup from '../Components/BrowserMockup';
 
-type PageProps = {
+type SlugPageProps = {
     params: {
         slug: string;
     };
 };
 
-export default async function SlugPage({ params }: PageProps) {
+export default async function SlugPage({ params }: SlugPageProps) {
     const data = await getSiteDataBySlug(params.slug);
 
     if (!data) return <div>Site não encontrado</div>;
