@@ -12,6 +12,14 @@ import useFirebase from '../hooks/useFirebase'
 
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import { storage } from '@/app/lib/firebase'
+import { create } from 'domain';
+
+
+
+
+
+
+
 
 export default function Root() {
 
@@ -22,40 +30,65 @@ export default function Root() {
     const [step, setStep] = useState(0);
 
 
-
     const [fotos, setFotos] = useState<File[]>([]);
     const [urlFotos, setUrlFotos] = useState<string[]>([]);
 
 
+    const [musicSelectedFromChild, musicSetSelectedFromChild] = useState('')
 
-    const handleChangeFoto = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const files = event.target.files;
-        if (files) {
-            const selectedFiles = Array.from(files);
-            setFotos(selectedFiles);
-            handleUpload();
-        }
-    };
+    const handleSelectedChange = (valor: string) => {
+        musicSetSelectedFromChild(valor)
+    }
 
 
     const handleUpload = async () => {
-        const downloadUrls: string[] = [];
-
-
-        for (const f of fotos) {
-            const storageRef = ref(storage, `fotos/${f.name}`);
-            const snapshot = await uploadBytes(storageRef, f);
-            const downloadUrl = await getDownloadURL(snapshot.ref);
-            downloadUrls.push(downloadUrl);
-            console.log('uploaded', f.name)
+        if (!fotos || fotos.length === 0) {
+            console.warn("Nenhuma foto selecionada para upload.");
+            return;
         }
 
-        setUrlFotos(downloadUrls);
-        // Aqui você pode salvar as URLs no Firestore
+        try {
+            const uploadPromises = fotos.map(async (f) => {
+                const storageRef = ref(storage, `fotos/${f.name}`);
+                const snapshot = await uploadBytes(storageRef, f);
+                const downloadUrl = await getDownloadURL(snapshot.ref);
+                console.log("uploaded", f.name);
+                return downloadUrl;
+            });
+
+            const downloadUrls = await Promise.all(uploadPromises);
+            setUrlFotos(downloadUrls);
+            // Aqui você pode salvar as URLs no Firestore, se quiser
+        } catch (error) {
+            console.error("Erro ao fazer upload das imagens:", error);
+        }
     };
 
 
 
+
+    const handleChangeFoto = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        const files = event.target.files;
+        const maxFiles = 5;
+
+        if (files) {
+
+            if (files.length > maxFiles) {
+                alert(`você pode enviar no máximo ${maxFiles} imagens`)
+                event.target.value = '';
+                return;
+            }
+            const selectedFiles = Array.from(files);
+            await setFotos(selectedFiles);
+
+
+        };
+    }
+
+
+    useEffect(() => {
+        handleUpload();
+    }, [fotos])
 
 
     const [plano, setPlano] = useState('vitalicio');
@@ -397,7 +430,7 @@ export default function Root() {
 
                     {plano !== 'mensal' ? (
 
-                        <MusicSearch />
+                        <MusicSearch onSelectedChange={handleSelectedChange} />
 
 
                     ) : (
@@ -518,8 +551,8 @@ ${estiloBackground === value
                                         fotos: fotos,
                                         estiloFoto: estiloFoto,
                                         estiloBackground: estiloBackground,
-                                        urlFotos: urlFotos
-
+                                        urlFotos: urlFotos,
+                                        music: musicSelectedFromChild
                                     }
                                 );
 
@@ -545,9 +578,10 @@ ${estiloBackground === value
                 title={title}
                 description={description}
                 dataInicio={dataInicio}
-                urlFotos={urlFotos}
+                urlFotos={fotos}
                 estiloFoto={estiloFoto}
                 estiloBackground={estiloBackground}
+                music=''
             />
         </div >
     );

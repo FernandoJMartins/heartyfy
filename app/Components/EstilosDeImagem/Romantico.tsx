@@ -8,7 +8,7 @@ import 'swiper/css/pagination';
 
 
 interface RomanticoProps {
-    fotos: string[];
+    fotos: File[] | string[];
 }
 
 export default function Romantico({ fotos }: RomanticoProps) {

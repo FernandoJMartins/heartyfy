@@ -8,7 +8,7 @@ import 'swiper/css/pagination';
 
 
 interface CarrosselProps {
-    fotos: string[];
+    fotos: File[] | string[];
 }
 
 export default function Classico({ fotos }: CarrosselProps) {

@@ -1,6 +1,4 @@
-import { useState, useEffect, useRef, use } from 'react';
-
-
+import { useState, useEffect } from 'react';
 
 type MusicResult = {
     artworkUrl100: string;
@@ -10,9 +8,12 @@ type MusicResult = {
     previewUrl: string;
 };
 
+type MusicProps = {
+    onSelectedChange: (valor: string) => void;
+}
 
-export default function MusicSearch() {
 
+export default function MusicSearch({ onSelectedChange }: MusicProps) {
 
 
     const [playingAudio, setPlayingAudio] = useState<HTMLAudioElement | null>(null);
@@ -23,11 +24,9 @@ export default function MusicSearch() {
     const [query, setQuery] = useState('');
     const [results, setResults] = useState<MusicResult[]>([]);
 
-    const pauseAudio = (name: string, url: string) => {
+    const pauseAudio = () => {
         const audio = document.getElementById('audio') as HTMLAudioElement;
 
-
-        console.log('Pausando áudio:', name, url);
         if (audio) {
             setSelected('');
             audio.pause();
@@ -38,18 +37,20 @@ export default function MusicSearch() {
 
 
 
-    const playAudio = (name: string, author: string, url: string) => {
+    const playAudio = (url: string) => {
 
-        console.log('Buscando vídeo no YouTube:', name, author);
 
         const audio = document.getElementById('audio') as HTMLAudioElement;
+
         setSelected(url);
-        console.log('Reproduzindo áudio:', name, url);
 
 
         if (audio) {
             audio.src = url;
             setPlayingAudio(audio);
+
+            onSelectedChange(url);
+
             audio.play().catch(error => {
                 console.error('Erro ao reproduzir áudio:', error);
             });
@@ -98,11 +99,11 @@ export default function MusicSearch() {
 
                             {
                                 !playingAudio || playingAudio.src !== music.previewUrl ? (
-                                    playAudio(music.trackName, music.artistName, music.previewUrl)
+                                    playAudio(music.previewUrl)
 
                                     // Atualiza o estado selecionado
                                 ) : (
-                                    pauseAudio(music.trackName, music.previewUrl)
+                                    pauseAudio()
                                 );
                             }
 

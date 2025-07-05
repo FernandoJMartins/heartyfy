@@ -8,7 +8,7 @@ import 'swiper/css/pagination';
 
 
 interface CuboProps {
-    fotos: string[];
+    fotos: File[] | string[];
 }
 
 export default function Cubo({ fotos }: CuboProps) {
