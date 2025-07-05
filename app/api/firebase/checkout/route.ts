@@ -8,7 +8,7 @@ export async function POST(req: Request) {
 
     console.log(body)
 
-    const { slug, title, description, dataInicio, fotos, estiloFoto, estiloBackground } = body;
+    const { slug, title, description, dataInicio, fotos, estiloFoto, estiloBackground, urlFotos } = body;
 
 
 
@@ -21,7 +21,7 @@ export async function POST(req: Request) {
         fotos: fotos,
         estiloFoto: estiloFoto,
         estiloBackground: estiloBackground,
-
+        urlFotos: urlFotos,
     })
 
     return NextResponse.json({ redirectUrl: `/${slug}` })

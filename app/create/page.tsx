@@ -518,7 +518,7 @@ ${estiloBackground === value
                                         fotos: fotos,
                                         estiloFoto: estiloFoto,
                                         estiloBackground: estiloBackground,
-
+                                        urlFotos: urlFotos
 
                                     }
                                 );

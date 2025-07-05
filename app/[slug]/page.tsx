@@ -4,7 +4,13 @@ import BrowserMockup from '../Components/BrowserMockup';
 
 
 export default async function SlugPage({ params }: any) {
-    const data = await getSiteDataBySlug(params.slug);
+
+    const awaitParams = await params;
+
+    const data = await getSiteDataBySlug(awaitParams.slug);
+
+
+    console.log(data)
 
     if (!data) return <div>Site não encontrado</div>;
 

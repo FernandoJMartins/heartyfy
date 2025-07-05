@@ -20,6 +20,9 @@ type Props = {
 export default function BrowserMockup({ url, title, description, dataInicio, urlFotos, estiloFoto, estiloBackground }: Props) {
 
 
+
+    console.log(urlFotos)
+
     let bgColor = '#1e1e1e'; // Default color
 
     if (estiloBackground === 'preto') {
