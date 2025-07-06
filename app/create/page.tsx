@@ -69,7 +69,12 @@ export default function Root() {
 
     const handleChangeFoto = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const files = event.target.files;
-        const maxFiles = 5;
+
+        var maxFiles = 4;
+        if (plano == 'vitalicio') {
+            maxFiles = 8;
+        }
+
 
         if (files) {
 
@@ -93,7 +98,7 @@ export default function Root() {
 
     const [plano, setPlano] = useState('vitalicio');
     const [estiloFoto, setEstiloFoto] = useState('classico');
-    const [estiloBackground, setEstiloBackground] = useState('preto');
+    const [estiloBackground, setEstiloBackground] = useState('#1e1e1e');
 
     const [url, setUrl] = useState('https://www.heartyfy.site/');
 
@@ -127,12 +132,12 @@ export default function Root() {
             setPlano('anual');
             setStep(1);
             setValue(20);
-            setUnitPrice(19.90); // Valor do plano anual
+            setUnitPrice(67.90); // Valor do plano anual
         } else if (plano === 'vitalicio') {
             setPlano('vitalicio');
             setStep(1);
             setValue(20);
-            setUnitPrice(46.90); // Valor do plano vitalício
+            setUnitPrice(67.70); // Valor do plano vitalício
         }
     };
 
@@ -148,6 +153,8 @@ export default function Root() {
         setTitle(value);
         makeUrl(value);
     };
+
+
 
     const betterUrl = (data: string) => {
         const dataParts = data.split('-');
@@ -194,7 +201,7 @@ export default function Root() {
 
                     <div className="flex flex-col items-center mt-10 space-y-3">
                         <div className="w-[80%]">
-                            <h2 className="text-white text-2xl font-bold text-center mb-4">Nome do Casal</h2>
+                            <h1 className="text-white text-2xl font-bold text-center mb-4">Nome do Casal</h1>
                         </div>
 
                         <input
@@ -213,7 +220,7 @@ export default function Root() {
                             </button>
 
                             <button
-                                onClick={() => { setStep(2); window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }); setValue(47); }}
+                                onClick={() => { { if (title == '') return alert('Escreva o nome do casal'); setStep(1) }; setStep(2); window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }); setValue(47); }}
                                 className='bg-gradient-to-br from-pink-600 to-pink-700 w-full text-white px-4 py-2 rounded-md mt-4 hover:bg-[#A61D4B] transition-colors duration-300'>
                                 Próxima Etapa
                             </button>
@@ -234,7 +241,7 @@ export default function Root() {
 
                 <div className={step === 2 ? 'flex flex-col items-center mt-10 space-y-3' : 'hidden'}>
                     <div className="w-[80%]">
-                        <h2 className="text-white text-2xl font-bold text-center mb-4">Mensagem</h2>
+                        <h1 className="text-white text-2xl font-bold text-center mb-4">Mensagem</h1>
                     </div>
 
                     <textarea
@@ -268,10 +275,11 @@ export default function Root() {
 
                 <div className={step === 3 ? 'flex flex-col items-center mt-10 space-y-3' : 'hidden'}>
                     <div className="w-[80%]">
-                        <h2 className="text-white text-2xl font-bold text-center mb-4">Data de Início do Relacionamento</h2>
+                        <h1 className="text-white text-2xl font-bold text-center mb-4">Data de Início do Relacionamento</h1>
                     </div>
 
                     <input
+                        id='date'
                         type="date"
                         className="w-[80%] text-white px-4 py-2 h-12 border border-gray-300 rounded-lg shadow-sm bg-transparent focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
                         onChange={(e) => setDataInicio(e.target.value)}
@@ -289,7 +297,7 @@ export default function Root() {
                         </button>
 
                         <button
-                            onClick={() => { setStep(4); window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }); setValue(85); }}
+                            onClick={() => { { if (dataInicio == '') return alert('Selecione uma Data'); setStep(3) }; setStep(4); window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }); setValue(85); }}
                             className='bg-gradient-to-br from-pink-600 to-pink-700 w-full text-white px-4 py-2 rounded-md mt-4 hover:bg-[#A61D4B] transition-colors duration-300'>
                             Próxima Etapa
                         </button>
@@ -304,15 +312,15 @@ export default function Root() {
 
                 <div className={step === 4 ? 'flex flex-col items-center mt-10 space-y-3' : 'hidden'}>
                     <div className="w-[80%]">
-                        <h2 className="text-white text-2xl font-bold text-center mb-4">Foto do Casal</h2>
+                        <h1 className="text-white text-2xl font-bold text-center mb-4">Foto do Casal</h1>
                     </div>
 
                     {/* Botão customizado */}
-                    <label className="block justify-center items-center cursor-pointer transition px-12 py-12 border-dotted border-2 border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition resize-none text-left">
+                    <label className="w-[80%]  block justify-center items-center cursor-pointer transition px-12 py-12 border-dotted border-2 border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition resize-none text-left">
                         <img className='justify-center mx-auto flex' width="35" height="35" src="https://img.icons8.com/material-sharp/24/ffffff/upload-to-cloud.png" alt="upload-to-cloud" />
                         {plano !== 'mensal' ? (
                             <div>
-                                <div className='text-white'>Clique aqui para adicionar sua foto(s)</div>
+                                <p id='fotosTexto' className='text-white'>Clique aqui para adicionar sua(s) foto(s)</p>
 
 
                                 <input
@@ -351,7 +359,7 @@ export default function Root() {
 
                     {fotos.length > 1 && (
                         <div className="w-[80%] mb-12">
-                            <h2 className="text-white text-xl font-bold mt-4 text-center mb-2">Modo de Mostrar</h2>
+                            <h1 className="text-white text-xl font-bold mt-4 text-center mb-2">Modo de Mostrar</h1>
                             <div className="grid grid-cols-2 gap-3">
                                 {[
                                     { label: 'Clássico', value: 'classico' },
@@ -422,7 +430,7 @@ export default function Root() {
 
                 <div className={step === 5 ? 'flex flex-col items-center mt-10 space-y-3' : 'hidden'}>
                     <div className="w-[80%]">
-                        <h2 className="text-white text-2xl font-bold text-center mb-[-30px]">Dedique uma música especial <span className='text-sm text-gray-500'>(Opcional)</span></h2>
+                        <h1 className="text-white text-2xl font-bold text-center mb-[-30px]">Dedique uma música especial <span className='text-sm text-gray-500'>(Opcional)</span></h1>
                     </div>
 
 
@@ -434,7 +442,7 @@ export default function Root() {
 
 
                     ) : (
-                        <h2 className="text-white text-2xl font-bold text-center mb-4">Disponível Apenas nos planos Anual e Vitalício</h2>
+                        <h1 className="text-white text-2xl font-bold text-center mb-4">Disponível Apenas nos planos Anual e Vitalício</h1>
                     )}
 
 
@@ -474,7 +482,7 @@ export default function Root() {
 
                 <div className={step === 6 ? 'flex flex-col items-center mt-10 space-y-3' : 'hidden'}>
                     <div className="w-[80%]">
-                        <h2 className="text-white text-2xl font-bold text-center mb-4">Selecione uma Cor de Fundo</h2>
+                        <h1 className="text-white text-2xl font-bold text-center mb-4">Selecione uma Cor de Fundo</h1>
                     </div>
 
 
@@ -485,33 +493,39 @@ export default function Root() {
 
                         <div className="w-[80%] mb-12">
 
-                            <div className="grid grid-cols-2 gap-3">
-                                {[
-                                    { label: 'Preto', value: 'preto' },
-                                    { label: 'Vermelho', value: 'vermelho' },
-                                    { label: 'Azul', value: 'azul' },
-                                    { label: 'Verde', value: 'verde' }
-                                ].map(({ label, value }) => (
-                                    <button
-                                        key={value}
-                                        onClick={() => setEstiloBackground(value)}
 
-                                        className={`w-full px-4 py-3 rounded-md font-semibold text-sm transition-all duration-300
-${estiloBackground === value
-                                                ? 'bg-pink-600 text-white shadow-lg scale-105 ring-2 ring-white/60'
-                                                : 'bg-white text-pink-700 hover:bg-pink-100'
-                                            }`}
+                            {/* 
+                            <input
+                                id="colorPicker"
+                                type="color"
+                                value={estiloBackground}
+                                onChange={(e) => {
+                                    setEstiloBackground(e.target.value);
+                                }}
+                                className="w-16 h-16 rounded-full shadow-md border-2 border-white hover:scale-105 transition-transform duration-300 cursor-pointer"
+                                style={{
+                                    backgroundColor: estiloBackground,
+                                }}
+                            /> */}
 
-                                    >
-                                        {label}
-                                    </button>
-                                ))}
+
+                            <div className='block'>
+                                <input
+                                    id="colorPicker"
+                                    type="color"
+                                    onChange={(e) => { setEstiloBackground(e.target.value); console.log(e.target.value) }}
+                                    className="w-full h-10 p-0 rounded-xl border-none bg-transparent cursor-pointer"
+                                />
+
+                                <p id='bg' className='mt-[-33px] ml-[20px]'>{estiloBackground}</p>
                             </div>
+
+
                         </div>
 
 
                     ) : (
-                        <h2 className="text-white text-2xl font-bold text-center mb-4">Disponível Apenas nos planos Anual e Vitalício</h2>
+                        <h1 className="text-white text-2xl font-bold text-center mb-4">Disponível Apenas nos planos Anual e Vitalício</h1>
                     )}
 
 

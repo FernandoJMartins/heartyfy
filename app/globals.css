@@ -1,5 +1,29 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'tt';
+  src: url('/fonts/Fontspring-DEMO-tt_commons_pro_regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'barlow';
+  src: url('/fonts/Barlow-Regular.ttf') format('.ttf')
+}
+
+@font-face {
+  font-family: 'telegraf';
+  src: url('/fonts/Telegraf-Book.otf')format('opentype');
+}
+
+@font-face {
+  font-family: 'garet';
+  src: url('/fonts/Garet-Book.otf') format('opentype');
+}
+
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -16,9 +40,27 @@
 
 body {
 
-  background-color: #f1f2ce;
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #021935;
+
 }
+
+h1 {
+  font-family: 'telegraf';
+}
+
+h2,
+p {
+  font-family: 'barlow';
+}
+
+h3,
+textarea,
+input,
+#planos,
+#fotosTexto {
+  font-family: 'garet';
+}
+
 
 
 h3,
@@ -26,21 +68,30 @@ navbar li {
   font-size: 1rem;
   font-weight: 600;
   line-height: 1.75rem;
-  color: #7C5E99
+  color: white
 }
 
 h1,
 h2,
 h3 a {
-  color: #352640
+  color: white
 }
 
-input {
-  color: #352640
+input,
+#bg {
+  color: #FFFFFF
 }
 
+#url {
+  color: #252525;
+}
+
+#colorPicker {
+  border: none
+}
 
 button {
+  font-family: 'tt';
   cursor: pointer;
 }
 
@@ -48,13 +99,13 @@ button {
   display: inline-block;
   background-color: #f5f5f5;
   /* branco mais escuro */
-  border-radius: 50%;
-  padding: 0.1px;
+  border-radius: 999%;
+
   /* bem pequeno para não "engordar" */
   width: 30px;
   height: 30px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  object-fit: contain;
+
   /* garante que o ícone não distorça */
 }
 
@@ -62,4 +113,15 @@ button {
 
   border: white 2px solid;
   border-radius: 50%;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  /* inverte cores, útil se o fundo for escuro */
+}
+
+
+#bg {
+  pointer-events: none;
+  user-select: none;
 }

@@ -45,23 +45,16 @@ export default function BrowserMockup({ url, title, description, dataInicio, url
 
     }
 
-    useEffect(() => {
-        playAudio(music);
-    }, [])
-
-
-
-    let bgColor = '#1e1e1e'; // Default color
-
-    if (estiloBackground === 'preto') {
-        bgColor = '#1e1e1e';
-    } else if (estiloBackground === 'vermelho') {
-        bgColor = '#3C0D0D';
-    } else if (estiloBackground === 'azul') {
-        bgColor = '#0A2342';
-    } else if (estiloBackground === 'verde') {
-        bgColor = '#1F4032';
+    if (music) {
+        useEffect(() => {
+            playAudio(music);
+        }, [])
     }
+
+
+
+
+    var bgColor = estiloBackground;
 
 
 
@@ -183,7 +176,7 @@ export default function BrowserMockup({ url, title, description, dataInicio, url
                 <div className="w-3 h-3 rounded-full bg-red-500" />
                 <div className="w-3 h-3 rounded-full bg-yellow-400" />
                 <div className="w-3 h-3 rounded-full bg-green-500" />
-                <input
+                <input id='url'
                     className="mx-auto bg-gray-100 text-sm px-3 py-1 rounded-md outline-none  w-[80%] "
                     value={url}
                     readOnly
@@ -270,12 +263,11 @@ export default function BrowserMockup({ url, title, description, dataInicio, url
 
 
                 <h2 className='mt-4 text-xl font-semibold'>{title}</h2>
-                <p className="text-sm text-pink-200 mt-4 text-center">{description}</p>
+                <p className="text-sm text-gray-200 mt-4 text-center">{description}</p>
 
                 <div className="block">
-                    <p className="text-sm text-white mt-16 text-center">Início do relacionamento:
+                    <p className="text-sm text-white mt-16 text-center">Desde: <span>{dataCorrigida2}</span>
                     </p>
-                    <p className="text-sm text-white mt-2 mb-8 text-center">{dataCorrigida2}</p>
                 </div>
 
                 {dataInicio && (
