@@ -10,7 +10,7 @@ export default async function SlugPage({ params }: any) {
 
     if (!data) return <div>Site não encontrado</div>;
 
-    const { url, title, description, dataInicio, urlFotos, estiloFoto, estiloBackground, music } = data;
+    const { url, title, description, dataInicio, urlFotos, estiloFoto, estiloBackground, music, status } = data;
 
     return (
         <div>
@@ -23,6 +23,7 @@ export default async function SlugPage({ params }: any) {
                 estiloFoto={estiloFoto}
                 estiloBackground={estiloBackground}
                 music={music}
+                status={status}
             />
 
         </div>

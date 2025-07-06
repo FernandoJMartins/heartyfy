@@ -36,8 +36,9 @@ export default function Root() {
 
     const [musicSelectedFromChild, musicSetSelectedFromChild] = useState('')
 
-    const handleSelectedChange = (valor: string) => {
-        musicSetSelectedFromChild(valor)
+    const handleSelectedChange = (callback: (valor: string) => void) => {
+        return (valor: string) =>
+            callback(valor);
     }
 
 
@@ -438,7 +439,7 @@ export default function Root() {
 
                     {plano !== 'mensal' ? (
 
-                        <MusicSearch onSelectedChange={handleSelectedChange} />
+                        <MusicSearch onSelectedChange={handleSelectedChange(musicSetSelectedFromChild)} />
 
 
                     ) : (
@@ -494,30 +495,15 @@ export default function Root() {
                         <div className="w-[80%] mb-12">
 
 
-                            {/* 
-                            <input
-                                id="colorPicker"
-                                type="color"
-                                value={estiloBackground}
-                                onChange={(e) => {
-                                    setEstiloBackground(e.target.value);
-                                }}
-                                className="w-16 h-16 rounded-full shadow-md border-2 border-white hover:scale-105 transition-transform duration-300 cursor-pointer"
-                                style={{
-                                    backgroundColor: estiloBackground,
-                                }}
-                            /> */}
-
-
                             <div className='block'>
                                 <input
                                     id="colorPicker"
                                     type="color"
                                     onChange={(e) => { setEstiloBackground(e.target.value); console.log(e.target.value) }}
-                                    className="w-full h-10 p-0 rounded-xl border-none bg-transparent cursor-pointer"
+                                    className="w-full h-10 border rounded border-white  cursor-pointer"
                                 />
 
-                                <p id='bg' className='mt-[-33px] ml-[20px]'>{estiloBackground}</p>
+                                <p id='bg' className='mt-[-33px] ml-[20px] '>Clique aqui para Escolher a Cor</p>
                             </div>
 
 
@@ -566,7 +552,8 @@ export default function Root() {
                                         estiloFoto: estiloFoto,
                                         estiloBackground: estiloBackground,
                                         urlFotos: urlFotos,
-                                        music: musicSelectedFromChild
+                                        music: musicSelectedFromChild,
+                                        status: 'pago'
                                     }
                                 );
 
@@ -596,6 +583,7 @@ export default function Root() {
                 estiloFoto={estiloFoto}
                 estiloBackground={estiloBackground}
                 music=''
+                status=''
             />
         </div >
     );

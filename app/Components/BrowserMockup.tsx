@@ -16,13 +16,13 @@ type Props = {
     estiloFoto: string;// Array of File objects for photos
     estiloBackground?: string;
     music: string;
+    status: string;
 };
 
-export default function BrowserMockup({ url, title, description, dataInicio, urlFotos, estiloFoto, estiloBackground, music }: Props) {
+export default function BrowserMockup({ url, title, description, dataInicio, urlFotos, estiloFoto, estiloBackground, music, status }: Props) {
 
 
     const [fotosState, setFotosState] = useState<string[] | File[]>([]);
-
 
 
 
@@ -45,18 +45,21 @@ export default function BrowserMockup({ url, title, description, dataInicio, url
 
     }
 
-    if (music) {
-        useEffect(() => {
-            playAudio(music);
-        }, [])
-    }
+    // if (music) {
+    //     useEffect(() => {
+    //         playAudio(music);
+    //     }, [])
+    // }
+
 
 
 
 
     var bgColor = estiloBackground;
 
-
+    if (status == 'pago') {
+        document.body.style.backgroundColor = estiloBackground || '#021935';
+    }
 
 
     const [tempo, setTempo] = useState('');
@@ -166,22 +169,35 @@ export default function BrowserMockup({ url, title, description, dataInicio, url
             backgroundColor: bgColor,
         }}
 
+
             className={`block justify-center items-center mb-12
+                ${status == 'pago' ? (
+                    'w-full h-full'
+                ) : (
+                    ' w-[370px] h-[896px] border border-white/10 shadow-xl'
+                )}
+         text-white  mt-12 mx-auto
+          rounded-xl overflow-hidden 
+            mx-auto`}>
 
-         text-white w-[370px] h-[896px] mt-12 mx-auto
-          rounded-xl overflow-hidden shadow-xl
-           border border-white/10 mx-auto`}>
 
-            < div className="flex items-center gap-2 px-3 py-2 bg-[#fff] text-black" >
-                <div className="w-3 h-3 rounded-full bg-red-500" />
-                <div className="w-3 h-3 rounded-full bg-yellow-400" />
-                <div className="w-3 h-3 rounded-full bg-green-500" />
-                <input id='url'
-                    className="mx-auto bg-gray-100 text-sm px-3 py-1 rounded-md outline-none  w-[80%] "
-                    value={url}
-                    readOnly
-                />
-            </div >
+
+            {status != 'pago' && (
+
+                < div className="flex items-center gap-2 px-3 py-2 bg-[#fff] text-black" >
+                    <div className="w-3 h-3 rounded-full bg-red-500" />
+                    <div className="w-3 h-3 rounded-full bg-yellow-400" />
+                    <div className="w-3 h-3 rounded-full bg-green-500" />
+                    <input id='url'
+                        className="mx-auto bg-gray-100 text-sm px-3 py-1 rounded-md outline-none  w-[80%] "
+                        value={url}
+                        readOnly
+                    />
+                </div >
+
+
+            )}
+
 
 
             <div className="flex flex-col items-center justify-center p-6 min-h-[300px] ">
