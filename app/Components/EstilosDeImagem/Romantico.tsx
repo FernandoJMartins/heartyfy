@@ -20,7 +20,7 @@ export default function Romantico({ fotos }: RomanticoProps) {
             pagination={{ clickable: true }}
             modules={[EffectFade, Autoplay]}
             autoplay={{
-                delay: 4000,
+                delay: 2500,
                 disableOnInteraction: true,
             }}
             className="mySwiper w-[80%] h-[300px] lg:h-[350px]"

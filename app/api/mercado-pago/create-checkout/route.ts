@@ -1,9 +1,28 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Preference } from "mercadopago";
 import mpClient from "@/app/lib/mercado-pago";
+import useFirebase from "@/app/hooks/useFirebase";
 
 export async function POST(req: NextRequest) {
-    const { testeId, userEmail, unit_price } = await req.json();
+    const {
+        testeId,
+        userEmail,
+        unit_price,
+        slug,
+        title,
+        description,
+        dataInicio,
+        fotos,
+        estiloFoto,
+        estiloBackground,
+        urlFotos,
+        music } = await req.json();
+
+
+
+
+
+
 
     console.log('unit_price:', unit_price);
     try {
@@ -15,9 +34,16 @@ export async function POST(req: NextRequest) {
                 external_reference: testeId, // IMPORTANTE: Isso aumenta a pontuação da sua integração com o Mercado Pago - É o id da compra no nosso sistema
                 metadata: {
                     testeId, // O Mercado Pago converte para snake_case, ou seja, testeId vai virar teste_id
-                    // userEmail: userEmail,
-                    // plan: '123'
-                    //etc
+                    userEmail: userEmail,
+                    slug: slug,
+                    title: title,
+                    description: description,
+                    dataInicio: dataInicio,
+                    fotos: fotos,
+                    estiloFoto: estiloFoto,
+                    estiloBackground: estiloBackground,
+                    urlFotos: urlFotos,
+                    music: music,
                 },
                 ...(userEmail && {
                     payer: {
@@ -58,10 +84,12 @@ export async function POST(req: NextRequest) {
                 },
                 auto_return: "approved",
                 back_urls: {
-                    success: `https://heartyfy.vercel.app/?status=sucesso`,
+                    success: `https://heartyfy.vercel.app/sucesso`,
                     failure: `https://heartyfy.vercel.app/?status=falha`,
                     pending: `https://heartyfy.vercel.app/api/mercado-pago/pending`, // Criamos uma rota para lidar com pagamentos pendentes
                 },
+
+                notification_url: 'https://heartyfy.vercel.app/api/mercado-pago/webhook'
             },
         });
 

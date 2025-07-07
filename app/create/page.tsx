@@ -1,14 +1,19 @@
 'use client';
 
 import '../globals.css';
+
+import { useEffect, useState } from 'react';
+
+
 import Navbar from '../Components/Navbar';
 import ProgressBar from '../Components/ProgressBar';
 import BrowserMockup from '../Components/BrowserMockup';
-import { useEffect, useState } from 'react';
 import MusicSearch from '../Components/MusicSearch';
 import Step0 from '../Components/Steps/Step0';
+
+
 import useMercadoPago from '../hooks/useMercadoPago';
-import useFirebase from '../hooks/useFirebase'
+
 
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import { storage } from '@/app/lib/firebase'
@@ -23,8 +28,10 @@ import { create } from 'domain';
 
 export default function Root() {
 
+
+    const [email, setEmail] = useState('');
+
     const { createMercadoPagoCheckout } = useMercadoPago();
-    const { createFirebaseCheckout } = useFirebase();
 
     const [value, setValue] = useState(10); // Progress bar value
     const [step, setStep] = useState(0);
@@ -360,7 +367,7 @@ export default function Root() {
 
                     {fotos.length > 1 && (
                         <div className="w-[80%] mb-12">
-                            <h1 className="text-white text-xl font-bold mt-4 text-center mb-2">Modo de Mostrar</h1>
+                            <h1 className="text-white text-xl font-bold mt-4 text-center mb-2">Tipo de Slide</h1>
                             <div className="grid grid-cols-2 gap-3">
                                 {[
                                     { label: 'Clássico', value: 'classico' },
@@ -401,18 +408,10 @@ export default function Root() {
                                 } else {
                                     setStep(7);
 
-                                    // createMercadoPagoCheckout({
-                                    //     testeId: "123",
-                                    //     userEmail: "loveyu2uqr@gmail.com",
-                                    //     unit_price: unit_price
-                                    // });
-
-                                    createFirebaseCheckout(slug);
-
                                     window.scrollTo({
                                         top: 0, left: 0,
                                         behavior: 'smooth'
-                                    }); setValue(100)
+                                    }); setValue(99)
                                 };
                             }}
                             className='bg-gradient-to-br from-pink-600 to-pink-700 w-full text-white px-4 py-2 rounded-md mt-4 hover:bg-[#A61D4B] transition-colors duration-300'>
@@ -533,39 +532,75 @@ export default function Root() {
                         {/* botao de fundo personalizado musica e etc */}
                         <button
                             onClick={() => {
-                                setStep(7); console.log('slug1: ', slug)
-
-
-                                // createMercadoPagoCheckout({
-                                //     testeId: "123",
-                                //     userEmail: "loveyu2uqr@gmail.com",
-                                //     unit_price: unit_price
-                                // });
-
-                                createFirebaseCheckout(
-                                    {
-                                        slug: slug,
-                                        title: title,
-                                        description: description,
-                                        dataInicio: dataInicio,
-                                        fotos: fotos,
-                                        estiloFoto: estiloFoto,
-                                        estiloBackground: estiloBackground,
-                                        urlFotos: urlFotos,
-                                        music: musicSelectedFromChild,
-                                        status: 'pago'
-                                    }
-                                );
-
-
-                                window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }); setValue(100);
+                                setStep(7);
+                                window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }); setValue(99);
                             }}
                             className='bg-gradient-to-br from-pink-600 to-pink-700 w-full text-white px-4 py-2 rounded-md mt-4 hover:bg-[#A61D4B] transition-colors duration-300'>
-                            Realizar Pagamento
+                            Próxima Etapa
                         </button>
                     </div>
                 </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+                <div className={step === 7 ? 'flex flex-col items-center mt-10 space-y-3' : 'hidden'}>
+                    <div className="w-[80%]">
+                        <h1 className="text-white text-2xl font-bold text-center mb-4">Insira seu email para receber o QRCODE</h1>
+                    </div>
+
+                    <input
+                        className="w-[80%] text-white px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
+                        placeholder="joao@gmail.com"
+                        onChange={(e) => setEmail(e.target.value)}
+                        value={email}
+                    />
+
+
+
+                    <div className='flex gap-2 justify-between w-[80%]'>
+
+                        <button
+                            onClick={() => { setStep(6); window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }); setValue(98); }}
+                            className='bg-white text-pink-700 hover:bg-pink-100 w-full px-4 py-2 rounded-md mt-4 hover:bg-[#A61D4B] transition-colors duration-300'>
+                            Voltar Etapa
+                        </button>
+
+                        <button
+                            onClick={() => {
+                                { if (email == '') return alert('Selecione uma Email'); setStep(7) };
+                                window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+
+                                setValue(100);
+
+
+                                //criar um if para o FIREBASE PLANO MENSAL
+                                //criar um if para o FIREBASE PLANO MENSAL
+                                //criar um if para o FIREBASE PLANO MENSAL
+
+                                createMercadoPagoCheckout({
+                                    testeId: "123", //MUDAR TESTE IDDDDDDDDDDDDDDDDDDDD
+                                    userEmail: email,
+                                    unit_price: unit_price,
+
+                                });
+
+
+                            }}
+                            className='bg-gradient-to-br from-pink-600 to-pink-700 w-full text-white px-4 py-2 rounded-md mt-4 hover:bg-[#A61D4B] transition-colors duration-300'>
+                            Realizar o Pagamento
+                        </button>
+                    </div>
+                </div>
 
 
 

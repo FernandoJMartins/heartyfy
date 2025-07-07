@@ -33,7 +33,9 @@ export async function POST(request: Request) {
                     paymentData.status === 'approved' ||
                     paymentData.date_approved !== null
                 ) {
+                    console.log('handlemercado pago1')
                     await handleMercadoPagoPayment(paymentData);
+                    console.log('handlemercado pago2')
                 }
                 break;
             // case "subscription_preapproval": Eventos de assinatura

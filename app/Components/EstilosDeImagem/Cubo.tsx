@@ -33,7 +33,7 @@ export default function Cubo({ fotos }: CuboProps) {
 
 
             autoplay={{
-                delay: 4000,
+                delay: 2500,
                 disableOnInteraction: true,
             }}
             className="mySwiper w-[80%] h-[300px] lg:h-[350px]"

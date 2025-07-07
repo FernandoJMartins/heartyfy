@@ -37,7 +37,7 @@ export default function Carrossel({ fotos }: CarrosselProps) {
 
             autoplay={{
 
-                delay: 4000,
+                delay: 2500,
                 disableOnInteraction: true,
             }}
 
