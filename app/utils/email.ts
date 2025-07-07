@@ -40,7 +40,7 @@ export async function sendEmailWithQR(to: string, link: string, qrBase64: string
         <p style="margin-top: 40px; font-size: 0.9em; color: #666;">
           Se você tiver qualquer dúvida ou problema, não hesite em nos contatar.
         </p>
-        <p style="margin-top: 10px;">Atenciosamente,<br/>Equipe HeartFy}</p>
+        <p style="margin-top: 10px;">Atenciosamente,<br/>Equipe HeartFy</p>
       </div>
     `,
         attachments: [

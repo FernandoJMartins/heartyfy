@@ -38,6 +38,12 @@
   }
 }
 
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  overflow-x: none;
+}
+
 body {
 
   background-color: #021935;
@@ -124,4 +130,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 #bg {
   pointer-events: none;
   user-select: none;
+}
+
+#tituloPrincipal {
+  color: black;
 }
