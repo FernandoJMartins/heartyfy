@@ -577,7 +577,7 @@ export default function Root() {
 
                         <button
                             onClick={() => {
-                                { if (email == '') return alert('Selecione uma Email'); setStep(7) };
+                                { if (email == '') return alert('Selecione um Email'); setStep(7) };
                                 window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 
                                 setValue(100);
@@ -591,7 +591,16 @@ export default function Root() {
                                     testeId: "123", //MUDAR TESTE IDDDDDDDDDDDDDDDDDDDD
                                     userEmail: email,
                                     unit_price: unit_price,
-
+                                    slug: slug,
+                                    title: title,
+                                    description: description,
+                                    dataInicio: dataInicio,
+                                    fotos: fotos,
+                                    estiloFoto: estiloFoto,
+                                    estiloBackground: estiloBackground,
+                                    urlFotos: urlFotos,
+                                    music: musicSelectedFromChild,
+                                    status: 'pago'
                                 });
 
 

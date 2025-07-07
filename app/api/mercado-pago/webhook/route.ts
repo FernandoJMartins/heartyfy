@@ -8,26 +8,29 @@ import { handleMercadoPagoPayment } from "@/app/server/mercado-pago/handle-payme
 export async function POST(request: Request) {
 
     try {
-
-        console.log('Public Key:', process.env.NEXT_PUBLIC_MERCADO_PAGO_PUBLIC_KEY);
-        console.log("ACCESS_TOKEN:", process.env.MERCADO_PAGO_ACCESS_TOKEN);
-        console.log("WEBHOOK_SECRET:", process.env.MERCADO_PAGO_WEBHOOK_SECRET);
+        console.log('webhooko')
+        // console.log('Public Key:', process.env.NEXT_PUBLIC_MERCADO_PAGO_PUBLIC_KEY);
+        // console.log("ACCESS_TOKEN:", process.env.MERCADO_PAGO_ACCESS_TOKEN);
+        // console.log("WEBHOOK_SECRET:", process.env.MERCADO_PAGO_WEBHOOK_SECRET);
 
         verifyMercadoPagoSignature(request);
-
+        console.log('verificadoSignature')
         const body = await request.json();
-
+        console.log('body', body)
         const { type, data } = body;
 
         switch (type) {
 
             case 'payment':
+                console.log('antes do data ID')
                 const paymentId = data.id;
-
+                console.log('apos o data ID')
+                console.log(paymentId)
                 if (!paymentId) throw new Error("paymentId não encontrado");
 
                 const paymentClient = new Payment(mpClient);
                 const paymentData = await paymentClient.get({ id: paymentId });
+                console.log('paymentData', paymentData)
 
                 if (
                     paymentData.status === 'approved' ||
@@ -48,8 +51,13 @@ export async function POST(request: Request) {
                 break;
         }
         return NextResponse.json({ received: true }, { status: 200 });
-    } catch (error) {
-        console.error('Error processing Mercado Pago webhook:', error);
+
+    } catch (err: any) {
+        // Se for 404 (payment não encontrado), retorna 200 para o Mercado Pago não tentar novamente
+        if (err?.status === 404 || err?.message === 'Payment not found') {
+            return NextResponse.json({ received: true }, { status: 200 });
+        }
+        console.error('Error processing Mercado Pago webhook:', err);
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
     }
 }

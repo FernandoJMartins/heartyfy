@@ -89,13 +89,30 @@ export async function POST(req: NextRequest) {
                     pending: `https://heartyfy.vercel.app/api/mercado-pago/pending`, // Criamos uma rota para lidar com pagamentos pendentes
                 },
 
-                notification_url: 'https://heartyfy.vercel.app/api/mercado-pago/webhook'
             },
+
+
         });
 
         if (!createdPreference.id) {
             throw new Error("No preferenceID");
         }
+
+        // --- CHAMADA AO WEBHOOK INTERNO ---
+        // Ajuste a URL para o endpoint real do seu webhook
+        await fetch("https://heartyfy.vercel.app/api/mercado-pago/webhook", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                id: createdPreference.id, // ou outro dado que seu webhook espera
+                testeId,
+                userEmail,
+                slug,
+                // inclua aqui os dados que seu webhook precisa para processar
+            }),
+        });
 
         return NextResponse.json({
             preferenceId: createdPreference.id,

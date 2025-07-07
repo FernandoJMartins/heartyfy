@@ -1,7 +1,7 @@
 import 'server-only';
-import useFirebase from '../../hooks/useFirebase'
-import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
-import { storage } from '@/app/lib/firebase'
+
+import firebase from '../../hooks/firebase';
+
 
 import { PaymentResponse } from "mercadopago/dist/clients/payment/commonTypes";
 
@@ -9,6 +9,8 @@ import { sendEmailWithQR } from '../../utils/email';
 import { generateQrCode } from '../../utils/qrCode';
 
 export async function handleMercadoPagoPayment(paymentData: PaymentResponse) {
+
+    console.log('entrou no handlePayment')
 
 
     const metadata = paymentData.metadata;
@@ -25,17 +27,35 @@ export async function handleMercadoPagoPayment(paymentData: PaymentResponse) {
     const musicSelectedFromChild = metadata?.musicSelectedFromChild;
 
 
+    // const { createFirebaseCheckout } = useFirebase();
 
 
+    await firebase(
+        {
+            slug: slug,
+            title: title,
+            description: description,
+            dataInicio: dataInicio,
+            fotos: fotos,
+            estiloFoto: estiloFoto,
+            estiloBackground: estiloBackground,
+            urlFotos: urlFotos,
+            music: musicSelectedFromChild,
+            status: 'pago'
+        }
+    );
 
 
-
+    console.log(metadata)
 
     const url = `https://heartyfy.vercel.app/${slug}`;
     const qrImageBase64 = await generateQrCode(url);
 
-    await sendEmailWithQR(userEmail, url, qrImageBase64);
+    console.log(url);
+    console.log(qrImageBase64)
 
+    await sendEmailWithQR(userEmail, url, qrImageBase64);
+    console.log('email Enviado')
 
     return;
 }
