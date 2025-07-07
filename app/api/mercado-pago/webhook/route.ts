@@ -8,37 +8,29 @@ import { handleMercadoPagoPayment } from "@/app/server/mercado-pago/handle-payme
 export async function POST(request: Request) {
 
     try {
-        console.log('webhooko')
-        // console.log('Public Key:', process.env.NEXT_PUBLIC_MERCADO_PAGO_PUBLIC_KEY);
-        // console.log("ACCESS_TOKEN:", process.env.MERCADO_PAGO_ACCESS_TOKEN);
-        // console.log("WEBHOOK_SECRET:", process.env.MERCADO_PAGO_WEBHOOK_SECRET);
 
         verifyMercadoPagoSignature(request);
-        console.log('verificadoSignature')
+
         const body = await request.json();
-        console.log('body', body)
         const { type, data } = body;
 
         switch (type) {
 
             case 'payment':
-                console.log('antes do data ID')
                 const paymentId = data.id;
-                console.log('apos o data ID')
                 console.log(paymentId)
                 if (!paymentId) throw new Error("paymentId não encontrado");
 
                 const paymentClient = new Payment(mpClient);
                 const paymentData = await paymentClient.get({ id: paymentId });
-                console.log('paymentData', paymentData)
 
                 if (
                     paymentData.status === 'approved' ||
                     paymentData.date_approved !== null
                 ) {
-                    console.log('handlemercado pago1')
+
                     await handleMercadoPagoPayment(paymentData);
-                    console.log('handlemercado pago2')
+
                 }
             case 'merchant_order':
                 // implemente se precisar tratar merchant order

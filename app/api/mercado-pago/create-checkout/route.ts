@@ -17,6 +17,7 @@ export async function POST(req: NextRequest) {
             estiloBackground,
             urlFotos,
             music,
+            status
         } = await req.json();
 
         const preference = new Preference(mpClient);
@@ -27,6 +28,7 @@ export async function POST(req: NextRequest) {
                 metadata: {
                     testeId,
                     userEmail,
+                    unit_price,
                     slug,
                     title,
                     description,
@@ -36,6 +38,7 @@ export async function POST(req: NextRequest) {
                     estiloBackground,
                     urlFotos,
                     music,
+                    status
                 },
                 ...(userEmail && {
                     payer: {
