@@ -3,7 +3,7 @@
 import '../globals.css';
 
 import { useEffect, useState } from 'react';
-
+import { v4 as uuidv4 } from 'uuid';
 
 import Navbar from '../Components/Navbar';
 import ProgressBar from '../Components/ProgressBar';
@@ -30,6 +30,9 @@ export default function Root() {
 
 
     const [email, setEmail] = useState('');
+
+
+    const uniqueTesteId = uuidv4();
 
     const { createMercadoPagoCheckout } = useMercadoPago();
 
@@ -588,7 +591,7 @@ export default function Root() {
                                 //criar um if para o FIREBASE PLANO MENSAL
 
                                 createMercadoPagoCheckout({
-                                    testeId: "123", //MUDAR TESTE IDDDDDDDDDDDDDDDDDDDD
+                                    testeId: uniqueTesteId, //MUDAR TESTE IDDDDDDDDDDDDDDDDDDDD
                                     userEmail: email,
                                     unit_price: unit_price,
                                     slug: slug,

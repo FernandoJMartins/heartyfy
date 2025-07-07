@@ -40,16 +40,18 @@ export async function POST(request: Request) {
                     await handleMercadoPagoPayment(paymentData);
                     console.log('handlemercado pago2')
                 }
+            case 'merchant_order':
+                // implemente se precisar tratar merchant order
+                console.log("Merchant order recebido", data);
                 break;
-            // case "subscription_preapproval": Eventos de assinatura
-            //   console.log("Subscription preapproval event");
-            //   console.log(data);
-            //   break;
-
+            case 'subscription_preapproval':
+                console.log("Evento de assinatura recebido", data);
+                break;
             default:
                 console.log(`Unhandled event type: ${type}`);
                 break;
         }
+
         return NextResponse.json({ received: true }, { status: 200 });
 
     } catch (err: any) {
