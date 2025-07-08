@@ -20,7 +20,7 @@
 
 @font-face {
   font-family: 'garet';
-  src: url('/fonts/Garet-Book.otf') format('opentype');
+  src: url('/fonts/garet/Garet-Book.ttf') format('.ttf');
 }
 
 
@@ -54,19 +54,18 @@ h1 {
   font-family: 'telegraf';
 }
 
-h2,
-p {
+h2 {
   font-family: 'barlow';
 }
 
 h3,
 textarea,
 input,
-#planos,
-#fotosTexto {
+#planos li,
+#fotosTexto,
+p {
   font-family: 'garet';
 }
-
 
 
 h3,
@@ -127,11 +126,19 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 
+
 #bg {
   pointer-events: none;
   user-select: none;
 }
 
-#tituloPrincipal {
-  color: black;
+
+
+#icon2 {
+  filter: invert(1);
+}
+
+
+#planos li {
+  font-family: 'garet';
 }

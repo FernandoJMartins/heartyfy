@@ -174,7 +174,7 @@ export default function BrowserMockup({ url, title, description, dataInicio, url
                 ${status == 'pago' ? (
                     'w-full h-full'
                 ) : (
-                    ' w-[370px] h-[896px] border border-white/10 shadow-xl'
+                    ' w-[370px] h-[50%] border border-white/10 shadow-xl'
                 )}
          text-white  mt-12 mx-auto
           rounded-xl overflow-hidden 
@@ -270,7 +270,7 @@ export default function BrowserMockup({ url, title, description, dataInicio, url
 
 
                 ) : (
-                    <div className="w-[200px] h-[250px] border border-pink-500 flex items-center justify-center">
+                    <div className="w-[200px] h-[250px] rounded-sm border border-pink-500 flex items-center justify-center">
                         <img className="" width="80" height="80" src="https://img.icons8.com/comic/100/ffffff/camera.png" alt="camera" />
                     </div>
                 )}

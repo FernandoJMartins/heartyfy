@@ -8,7 +8,7 @@ export default function Navbar() {
                 <img
 
                     onClick={() => window.location.href = '/'}
-                    src='/background1.svg' alt='Logo HeartyFy' className='w-[200px] md:w-[200px] lg:w-[250px] hover:cursor-pointer' />
+                    src='/background1.svg' alt='Logo HeartyFy' className='w-[140px] md:w-[140px] lg:w-[250px] hover:cursor-pointer' />
 
 
                 <ul className=" hidden lg:flex gap-4">

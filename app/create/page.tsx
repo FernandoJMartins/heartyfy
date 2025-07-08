@@ -39,6 +39,7 @@ export default function Root() {
     const [value, setValue] = useState(10); // Progress bar value
     const [step, setStep] = useState(0);
 
+    const [maxFiles, setMaxFiles] = useState(1);
 
     const [fotos, setFotos] = useState<File[]>([]);
     const [urlFotos, setUrlFotos] = useState<string[]>([]);
@@ -80,11 +81,6 @@ export default function Root() {
 
     const handleChangeFoto = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const files = event.target.files;
-
-        var maxFiles = 4;
-        if (plano == 'vitalicio') {
-            maxFiles = 8;
-        }
 
 
         if (files) {
@@ -137,18 +133,21 @@ export default function Root() {
             setPlano('mensal');
             setStep(1);
             setValue(20);
-            setUnitPrice(16.90); // Valor do plano mensal
+            setMaxFiles(1);
+            setUnitPrice(24.90); // Valor do plano mensal
         }
         if (plano === 'anual') {
             setPlano('anual');
+            setMaxFiles(4);
             setStep(1);
             setValue(20);
-            setUnitPrice(67.90); // Valor do plano anual
+            setUnitPrice(178.80); // Valor do plano anual
         } else if (plano === 'vitalicio') {
             setPlano('vitalicio');
+            setMaxFiles(8);
             setStep(1);
             setValue(20);
-            setUnitPrice(67.70); // Valor do plano vitalício
+            setUnitPrice(97.90); // Valor do plano vitalício
         }
     };
 
@@ -210,9 +209,16 @@ export default function Root() {
                 {step === 1 && (
 
 
-                    <div className="flex flex-col items-center mt-10 space-y-3">
+                    <div className="flex flex-col items-center mt-15 space-y-3">
                         <div className="w-[80%]">
-                            <h1 className="text-white text-2xl font-bold text-center mb-4">Nome do Casal</h1>
+
+                            <h1 className="text-white text-3xl
+                             font-bold mb-4
+                             rounded-3xl 
+                             ">Nome do Casal</h1>
+                            <h3 className='mb-7'>Escreva o titulo dedicatório para a página. Ex: Eduardo e Mônica ou Feliz Aniversário ou etc!
+
+                            </h3>
                         </div>
 
                         <input
@@ -250,14 +256,17 @@ export default function Root() {
 
 
 
-                <div className={step === 2 ? 'flex flex-col items-center mt-10 space-y-3' : 'hidden'}>
+                <div className={step === 2 ? 'flex flex-col items-center mt-15 space-y-3' : 'hidden'}>
                     <div className="w-[80%]">
-                        <h1 className="text-white text-2xl font-bold text-center mb-4">Mensagem</h1>
+                        <h1 className="text-white text-3xl
+                             font-bold mb-4
+                             rounded-3xl">Mensagem</h1>
+                        <h3 className='mb-7'>Escreva sua mensagem carinhosa, capricha bem hein!</h3>
                     </div>
 
                     <textarea
                         className="w-[80%] h-[250px] text-white px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition resize-none text-left"
-                        placeholder="Escreva sua mensagem carinhosa, capricha bem hein! 💘"
+                        placeholder=""
                         onChange={(e) => setDescription(e.target.value)}
                         value={description}
                     />
@@ -284,9 +293,14 @@ export default function Root() {
 
 
 
-                <div className={step === 3 ? 'flex flex-col items-center mt-10 space-y-3' : 'hidden'}>
+                <div className={step === 3 ? 'flex flex-col items-center mt-15 space-y-3' : 'hidden'}>
                     <div className="w-[80%]">
-                        <h1 className="text-white text-2xl font-bold text-center mb-4">Data de Início do Relacionamento</h1>
+                        <h1 className="text-white text-3xl
+                             font-bold mb-4
+                             rounded-3xl">Data de Início do Relacionamento</h1>
+                        <h3 className='mb-7'>Qual foi o dia em que tudo começou? Relacionamento, amizade, parceria... você decide!
+
+                        </h3>
                     </div>
 
                     <input
@@ -321,9 +335,22 @@ export default function Root() {
 
 
 
-                <div className={step === 4 ? 'flex flex-col items-center mt-10 space-y-3' : 'hidden'}>
+                <div className={step === 4 ? 'flex flex-col items-center mt-15 space-y-3' : 'hidden'}>
                     <div className="w-[80%]">
-                        <h1 className="text-white text-2xl font-bold text-center mb-4">Foto do Casal</h1>
+                        <h1 className="text-white text-3xl
+                             font-bold mb-4
+                             rounded-3xl ">Fotos</h1>
+
+                        {maxFiles == 1 ? (
+                            <h3 className='mb-7'>    Anexe uma foto especial para deixar sua página única. Você pode adicionar {maxFiles} foto.</h3>
+                        ) :
+                            (
+                                <h3 className='mb-7'>Anexe fotos e escolha o modo de exibição para personalizar a página. Você pode adicionar até {maxFiles} fotos</h3>
+
+                            )}
+
+
+
                     </div>
 
                     {/* Botão customizado */}
@@ -370,7 +397,9 @@ export default function Root() {
 
                     {fotos.length > 1 && (
                         <div className="w-[80%] mb-12">
-                            <h1 className="text-white text-xl font-bold mt-4 text-center mb-2">Tipo de Slide</h1>
+                            <h1 className="text-white text-2xl
+                             font-bold mb-6 mt-6
+                             rounded-3xl">Tipo de Slide</h1>
                             <div className="grid grid-cols-2 gap-3">
                                 {[
                                     { label: 'Clássico', value: 'classico' },
@@ -431,9 +460,12 @@ export default function Root() {
 
 
 
-                <div className={step === 5 ? 'flex flex-col items-center mt-10 space-y-3' : 'hidden'}>
+                <div className={step === 5 ? 'flex flex-col items-center mt-15 space-y-3' : 'hidden'}>
                     <div className="w-[80%]">
-                        <h1 className="text-white text-2xl font-bold text-center mb-[-30px]">Dedique uma música especial <span className='text-sm text-gray-500'>(Opcional)</span></h1>
+                        <h1 className="text-white text-3xl
+                             font-bold mb-4
+                             rounded-3xl ">Dedique uma música especial <span className='text-sm text-gray-500'>(Opcional)</span></h1>
+                        <h3> Escolha uma música especial — ela tocará automaticamente na página e deixará tudo mais emocionante.</h3>
                     </div>
 
 
@@ -445,7 +477,9 @@ export default function Root() {
 
 
                     ) : (
-                        <h1 className="text-white text-2xl font-bold text-center mb-4">Disponível Apenas nos planos Anual e Vitalício</h1>
+                        <h1 className="text-white text-3xl
+                             font-bold mb-4
+                             rounded-3xl ">Disponível Apenas nos planos Anual e Vitalício</h1>
                     )}
 
 
@@ -483,9 +517,12 @@ export default function Root() {
 
 
 
-                <div className={step === 6 ? 'flex flex-col items-center mt-10 space-y-3' : 'hidden'}>
+                <div className={step === 6 ? 'flex flex-col items-center mt-15 space-y-3' : 'hidden'}>
                     <div className="w-[80%]">
-                        <h1 className="text-white text-2xl font-bold text-center mb-4">Selecione uma Cor de Fundo</h1>
+                        <h1 className="text-white text-3xl
+                             font-bold mb-4
+                             rounded-3xl ">Selecione uma Cor de Fundo</h1>
+                        <h3 className='mb-7'>Selecione a cor ideal para dar o tom da sua homenagem. Ela será aplicada no fundo da página.</h3>
                     </div>
 
 
@@ -502,7 +539,7 @@ export default function Root() {
                                     id="colorPicker"
                                     type="color"
                                     onChange={(e) => { setEstiloBackground(e.target.value); console.log(e.target.value) }}
-                                    className="w-full h-10 border rounded border-white  cursor-pointer"
+                                    className="w-full h-10 rounded-xl border-black   cursor-pointer"
                                 />
 
                                 <p id='bg' className='mt-[-33px] ml-[20px] '>Clique aqui para Escolher a Cor</p>
@@ -513,7 +550,7 @@ export default function Root() {
 
 
                     ) : (
-                        <h1 className="text-white text-2xl font-bold text-center mb-4">Disponível Apenas nos planos Anual e Vitalício</h1>
+                        <h1 className="text-white text-3xl font-bold text-center mb-4">Disponível Apenas nos planos Anual e Vitalício</h1>
                     )}
 
 
@@ -556,9 +593,12 @@ export default function Root() {
 
 
 
-                <div className={step === 7 ? 'flex flex-col items-center mt-10 space-y-3' : 'hidden'}>
+                <div className={step === 7 ? 'flex flex-col items-center mt-15 space-y-3' : 'hidden'}>
                     <div className="w-[80%]">
-                        <h1 className="text-white text-2xl font-bold text-center mb-4">Insira seu email para receber o QRCODE</h1>
+                        <h1 className="text-white text-3xl
+                             font-bold mb-4
+                             rounded-3xl ">Insira seu email para receber o QRCODE</h1>
+                        <h3 className='mb-7'>Você receberá o acesso completo à sua página personalizada por e-mail.</h3>
                     </div>
 
                     <input
@@ -573,7 +613,18 @@ export default function Root() {
                     <div className='flex gap-2 justify-between w-[80%]'>
 
                         <button
-                            onClick={() => { setStep(6); window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }); setValue(98); }}
+                            onClick={() => {
+
+                                if (plano == 'mensal') {
+                                    setStep(4);
+                                }
+                                else {
+                                    setStep(6);
+                                }
+
+
+                                window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }); setValue(98);
+                            }}
                             className='bg-white text-pink-700 hover:bg-pink-100 w-full px-4 py-2 rounded-md mt-4 hover:bg-[#A61D4B] transition-colors duration-300'>
                             Voltar Etapa
                         </button>
@@ -585,10 +636,6 @@ export default function Root() {
 
                                 setValue(100);
 
-
-                                //criar um if para o FIREBASE PLANO MENSAL
-                                //criar um if para o FIREBASE PLANO MENSAL
-                                //criar um if para o FIREBASE PLANO MENSAL
 
                                 createMercadoPagoCheckout({
                                     testeId: uniqueTesteId, //MUDAR TESTE IDDDDDDDDDDDDDDDDDDDD
@@ -609,7 +656,7 @@ export default function Root() {
 
                             }}
                             className='bg-gradient-to-br from-pink-600 to-pink-700 w-full text-white px-4 py-2 rounded-md mt-4 hover:bg-[#A61D4B] transition-colors duration-300'>
-                            Realizar o Pagamento
+                            Realizar Pagamento
                         </button>
                     </div>
                 </div>

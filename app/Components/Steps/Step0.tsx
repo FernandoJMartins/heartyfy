@@ -21,11 +21,10 @@ export default function Step0({ escolherPlano }: Step0Props) {
                      text-white shadow-sm shadow-red-700 hover:shadow-red-500
                      transition-transform duration-300 transform hover:scale-[1.05] hover:rotate-1 bg-clip-padding">
 
-                    {/* Badge de destaque */}
-                    <div className=" z-11 absolute top-[-12px] right-[-12px] bg-yellow-400 text-black text-xs font-bold px-3 py-1 rounded-full shadow-md animate-pulse">
-                        🔥 Mais comprado
-                    </div>
 
+                    <div className=" z-11 absolute top-[-12px] right-[-12px] bg-yellow-400 text-black text-xs font-bold px-3 py-1 rounded-full shadow-md animate-pulse">
+                        🔥 Mais Comprado
+                    </div>
 
                     <h1 className="text-xl font-bold flex gap-2">
                         <img id='heartIcon' width="30" height="30" src="https://img.icons8.com/?size=100&id=5twNojKL5zU7&format=png&color=000000" alt="two-hearts" />
@@ -65,7 +64,7 @@ export default function Step0({ escolherPlano }: Step0Props) {
                             <linearGradient id="I9GV0SozQFknxHSR6DCx5a_70yRC8npwT3d_gr1" x1="9.858" x2="38.142" y1="9.858" y2="38.142" gradientUnits="userSpaceOnUse"><stop offset="0" stopColor="#70ce06"></stop><stop offset="1" stopColor="#088242"></stop></linearGradient><path fill="url(#I9GV0SozQFknxHSR6DCx5a_70yRC8npwT3d_gr1)" d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z"></path><path d="M32.172,16.172L22,26.344l-5.172-5.172c-0.781-0.781-2.047-0.781-2.828,0l-1.414,1.414	c-0.781,0.781-0.781,2.047,0,2.828l8,8c0.781,0.781,2.047,0.781,2.828,0l13-13c0.781-0.781,0.781-2.047,0-2.828L35,16.172	C34.219,15.391,32.953,15.391,32.172,16.172z" opacity=".05"></path><path d="M20.939,33.061l-8-8c-0.586-0.586-0.586-1.536,0-2.121l1.414-1.414c0.586-0.586,1.536-0.586,2.121,0	L22,27.051l10.525-10.525c0.586-0.586,1.536-0.586,2.121,0l1.414,1.414c0.586,0.586,0.586,1.536,0,2.121l-13,13	C22.475,33.646,21.525,33.646,20.939,33.061z" opacity=".07"></path><path fill="#fff" d="M21.293,32.707l-8-8c-0.391-0.391-0.391-1.024,0-1.414l1.414-1.414c0.391-0.391,1.024-0.391,1.414,0	L22,27.758l10.879-10.879c0.391-0.391,1.024-0.391,1.414,0l1.414,1.414c0.391,0.391,0.391,1.024,0,1.414l-13,13	C22.317,33.098,21.683,33.098,21.293,32.707z"></path>
                         </svg>Suporte 24h</li>
                     </ul>
-                    <p className="flex mt-6 font-bold text-xl justify-end gap-1">R$ 67.70 <span className='text-[#F5F5F5] text-sm mt-1.5'>/ uma vez</span></p>
+                    <p className="flex mt-6 font-bold text-xl justify-end gap-1">R$ 97.90 <span className='text-[#F5F5F5] text-sm mt-1.5'>/ uma vez</span></p>
                 </div>
 
 
@@ -75,6 +74,13 @@ export default function Step0({ escolherPlano }: Step0Props) {
                       from-pink-600 to-pink-700 text-white shadow-sm
                       shadow-pink-700 hover:shadow-pink-500 transition-transform duration-300
                        transform hover:scale-[1.05] hover:rotate-1 bg-clip-padding">
+
+
+                    <div className=" z-11 absolute top-[-12px] right-[-12px] bg-green-400 text-black text-xs font-bold px-3 py-1 rounded-full shadow-md animate-pulse">
+
+                        💰 Mais Econômico
+                    </div>
+
                     <h1 className="text-xl font-bold">1 Ano</h1>
                     <p className="text-sm mb-4 italic">Anual – renovação</p>
 
@@ -110,7 +116,7 @@ export default function Step0({ escolherPlano }: Step0Props) {
                             <linearGradient id="I9GV0SozQFknxHSR6DCx5a_70yRC8npwT3d_gr1" x1="9.858" x2="38.142" y1="9.858" y2="38.142" gradientUnits="userSpaceOnUse"><stop offset="0" stopColor="#70ce06"></stop><stop offset="1" stopColor="#088242"></stop></linearGradient><path fill="url(#I9GV0SozQFknxHSR6DCx5a_70yRC8npwT3d_gr1)" d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z"></path><path d="M32.172,16.172L22,26.344l-5.172-5.172c-0.781-0.781-2.047-0.781-2.828,0l-1.414,1.414	c-0.781,0.781-0.781,2.047,0,2.828l8,8c0.781,0.781,2.047,0.781,2.828,0l13-13c0.781-0.781,0.781-2.047,0-2.828L35,16.172	C34.219,15.391,32.953,15.391,32.172,16.172z" opacity=".05"></path><path d="M20.939,33.061l-8-8c-0.586-0.586-0.586-1.536,0-2.121l1.414-1.414c0.586-0.586,1.536-0.586,2.121,0	L22,27.051l10.525-10.525c0.586-0.586,1.536-0.586,2.121,0l1.414,1.414c0.586,0.586,0.586,1.536,0,2.121l-13,13	C22.475,33.646,21.525,33.646,20.939,33.061z" opacity=".07"></path><path fill="#fff" d="M21.293,32.707l-8-8c-0.391-0.391-0.391-1.024,0-1.414l1.414-1.414c0.391-0.391,1.024-0.391,1.414,0	L22,27.758l10.879-10.879c0.391-0.391,1.024-0.391,1.414,0l1.414,1.414c0.391,0.391,0.391,1.024,0,1.414l-13,13	C22.317,33.098,21.683,33.098,21.293,32.707z"></path>
                         </svg>Suporte 24h</li>
                     </ul>
-                    <p className="flex mt-6 font-bold text-xl justify-end gap-1">R$ 5.65 <span className='text-[#F5F5F5] text-sm mt-1.5'>/ mês</span></p>
+                    <p className="flex mt-6 font-bold text-xl justify-end gap-1">R$ 14.90 <span className='text-[#F5F5F5] text-sm mt-1.5'>/ mês</span></p>
                 </div>
 
 
@@ -141,15 +147,21 @@ export default function Step0({ escolherPlano }: Step0Props) {
                         <li className='flex text-[18px] gap-2'><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 48 48">
                             <linearGradient id="I9GV0SozQFknxHSR6DCx5a_70yRC8npwT3d_gr1" x1="9.858" x2="38.142" y1="9.858" y2="38.142" gradientUnits="userSpaceOnUse"><stop offset="0" stopColor="#70ce06"></stop><stop offset="1" stopColor="#088242"></stop></linearGradient><path fill="url(#I9GV0SozQFknxHSR6DCx5a_70yRC8npwT3d_gr1)" d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z"></path><path d="M32.172,16.172L22,26.344l-5.172-5.172c-0.781-0.781-2.047-0.781-2.828,0l-1.414,1.414	c-0.781,0.781-0.781,2.047,0,2.828l8,8c0.781,0.781,2.047,0.781,2.828,0l13-13c0.781-0.781,0.781-2.047,0-2.828L35,16.172	C34.219,15.391,32.953,15.391,32.172,16.172z" opacity=".05"></path><path d="M20.939,33.061l-8-8c-0.586-0.586-0.586-1.536,0-2.121l1.414-1.414c0.586-0.586,1.536-0.586,2.121,0	L22,27.051l10.525-10.525c0.586-0.586,1.536-0.586,2.121,0l1.414,1.414c0.586,0.586,0.586,1.536,0,2.121l-13,13	C22.475,33.646,21.525,33.646,20.939,33.061z" opacity=".07"></path><path fill="#fff" d="M21.293,32.707l-8-8c-0.391-0.391-0.391-1.024,0-1.414l1.414-1.414c0.391-0.391,1.024-0.391,1.414,0	L22,27.758l10.879-10.879c0.391-0.391,1.024-0.391,1.414,0l1.414,1.414c0.391,0.391,0.391,1.024,0,1.414l-13,13	C22.317,33.098,21.683,33.098,21.293,32.707z"></path>
                         </svg><strong>1 imagem</strong></li>
-                        <li className='flex text-[18px] gap-2'><svg xmlns="http://www.w3.org/2000/svg" id='icon' x="0px" y="0px" width="24" height="24" viewBox="0 0 48 48">
-                            <path fill="#910A00" d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z"></path><path fill="#fff" d="M29.656,15.516l2.828,2.828l-14.14,14.14l-2.828-2.828L29.656,15.516z"></path><path fill="#fff" d="M32.484,29.656l-2.828,2.828l-14.14-14.14l2.828-2.828L32.484,29.656z"></path>
-                        </svg> Música personalizada</li>
-                        <li className='flex text-[18px] gap-2'><svg xmlns="http://www.w3.org/2000/svg" id='icon' x="0px" y="0px" width="24" height="24" viewBox="0 0 48 48">
-                            <path fill="#910A00" d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z"></path><path fill="#fff" d="M29.656,15.516l2.828,2.828l-14.14,14.14l-2.828-2.828L29.656,15.516z"></path><path fill="#fff" d="M32.484,29.656l-2.828,2.828l-14.14-14.14l2.828-2.828L32.484,29.656z"></path>
-                        </svg> Fundo personalizável</li>
-                        <li className='flex text-[18px] gap-2'><svg xmlns="http://www.w3.org/2000/svg" id='icon' x="0px" y="0px" width="24" height="24" viewBox="0 0 48 48">
-                            <path fill="#910A00" d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z"></path><path fill="#fff" d="M29.656,15.516l2.828,2.828l-14.14,14.14l-2.828-2.828L29.656,15.516z"></path><path fill="#fff" d="M32.484,29.656l-2.828,2.828l-14.14-14.14l2.828-2.828L32.484,29.656z"></path>
-                        </svg> Animações exclusivas</li>
+                        <li className='flex text-[18px] gap-2'>
+
+                            <img className='ml-[-1.1px] bg-white rounded-4xl p-[0.01px]' width="26" height="26" src="https://img.icons8.com/ios-glyphs/30/e70000/cancel.png" alt="cancel" />
+                            Música personalizada</li>
+                        <li className='flex text-[18px] gap-2'>
+
+                            <img className='ml-[-1.1px] bg-white  rounded-4xl p-[0.01px]' width="26" height="26" src="https://img.icons8.com/ios-glyphs/30/e70000/cancel.png" alt="cancel" />
+
+                            Fundo personalizável</li>
+                        <li className='flex text-[18px] gap-2'>
+
+                            <img className='ml-[-1.1px] bg-white  rounded-4xl p-[0.01px]' width="26" height="26" src="https://img.icons8.com/ios-glyphs/30/e70000/cancel.png" alt="cancel" />
+
+
+                            Animações exclusivas</li>
                         <li className='flex text-[18px] gap-2'><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 48 48">
                             <linearGradient id="I9GV0SozQFknxHSR6DCx5a_70yRC8npwT3d_gr1" x1="9.858" x2="38.142" y1="9.858" y2="38.142" gradientUnits="userSpaceOnUse"><stop offset="0" stopColor="#70ce06"></stop><stop offset="1" stopColor="#088242"></stop></linearGradient><path fill="url(#I9GV0SozQFknxHSR6DCx5a_70yRC8npwT3d_gr1)" d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z"></path><path d="M32.172,16.172L22,26.344l-5.172-5.172c-0.781-0.781-2.047-0.781-2.828,0l-1.414,1.414	c-0.781,0.781-0.781,2.047,0,2.828l8,8c0.781,0.781,2.047,0.781,2.828,0l13-13c0.781-0.781,0.781-2.047,0-2.828L35,16.172	C34.219,15.391,32.953,15.391,32.172,16.172z" opacity=".05"></path><path d="M20.939,33.061l-8-8c-0.586-0.586-0.586-1.536,0-2.121l1.414-1.414c0.586-0.586,1.536-0.586,2.121,0	L22,27.051l10.525-10.525c0.586-0.586,1.536-0.586,2.121,0l1.414,1.414c0.586,0.586,0.586,1.536,0,2.121l-13,13	C22.475,33.646,21.525,33.646,20.939,33.061z" opacity=".07"></path><path fill="#fff" d="M21.293,32.707l-8-8c-0.391-0.391-0.391-1.024,0-1.414l1.414-1.414c0.391-0.391,1.024-0.391,1.414,0	L22,27.758l10.879-10.879c0.391-0.391,1.024-0.391,1.414,0l1.414,1.414c0.391,0.391,0.391,1.024,0,1.414l-13,13	C22.317,33.098,21.683,33.098,21.293,32.707z"></path>
                         </svg>URL personalizada</li>
@@ -157,7 +169,7 @@ export default function Step0({ escolherPlano }: Step0Props) {
                             <linearGradient id="I9GV0SozQFknxHSR6DCx5a_70yRC8npwT3d_gr1" x1="9.858" x2="38.142" y1="9.858" y2="38.142" gradientUnits="userSpaceOnUse"><stop offset="0" stopColor="#70ce06"></stop><stop offset="1" stopColor="#088242"></stop></linearGradient><path fill="url(#I9GV0SozQFknxHSR6DCx5a_70yRC8npwT3d_gr1)" d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z"></path><path d="M32.172,16.172L22,26.344l-5.172-5.172c-0.781-0.781-2.047-0.781-2.828,0l-1.414,1.414	c-0.781,0.781-0.781,2.047,0,2.828l8,8c0.781,0.781,2.047,0.781,2.828,0l13-13c0.781-0.781,0.781-2.047,0-2.828L35,16.172	C34.219,15.391,32.953,15.391,32.172,16.172z" opacity=".05"></path><path d="M20.939,33.061l-8-8c-0.586-0.586-0.586-1.536,0-2.121l1.414-1.414c0.586-0.586,1.536-0.586,2.121,0	L22,27.051l10.525-10.525c0.586-0.586,1.536-0.586,2.121,0l1.414,1.414c0.586,0.586,0.586,1.536,0,2.121l-13,13	C22.475,33.646,21.525,33.646,20.939,33.061z" opacity=".07"></path><path fill="#fff" d="M21.293,32.707l-8-8c-0.391-0.391-0.391-1.024,0-1.414l1.414-1.414c0.391-0.391,1.024-0.391,1.414,0	L22,27.758l10.879-10.879c0.391-0.391,1.024-0.391,1.414,0l1.414,1.414c0.391,0.391,0.391,1.024,0,1.414l-13,13	C22.317,33.098,21.683,33.098,21.293,32.707z"></path>
                         </svg>Suporte 24h</li>
                     </ul>
-                    <p className="flex mt-6 font-bold text-xl justify-end gap-1">R$ 16.90 <span className='text-[#F5F5F5] text-sm mt-1.5'>/ mês</span></p>
+                    <p className="flex mt-6 font-bold text-xl justify-end gap-1">R$ 24.90 <span className='text-[#F5F5F5] text-sm mt-1.5'>/ mês</span></p>
                 </div>
 
             </div>
