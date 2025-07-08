@@ -296,7 +296,7 @@ export default function BrowserMockup({ url, title, description, dataInicio, url
 
 
             </div>
-            <audio className='hidden' id='audio'>
+            <audio className='' id='audio'>
                 <source type="audio/mpeg" />
                 Seu navegador não suporta o elemento de áudio.
             </audio>
