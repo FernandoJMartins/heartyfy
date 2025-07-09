@@ -5,6 +5,9 @@ import Carrossel from "./EstilosDeImagem/Carrossel";
 import Classico from "./EstilosDeImagem/Classico";
 import Cubo from "./EstilosDeImagem/Cubo";
 import Romantico from "./EstilosDeImagem/Romantico";
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import Fotos from "./Fotos";
+import CustomAudioPlayer from "./CustomAudioPlayer";
 
 
 type Props = {
@@ -26,49 +29,15 @@ export default function BrowserMockup({ url, title, description, dataInicio, url
 
 
 
-
-    const playAudio = (url: string) => {
-
-
-        const audio = document.getElementById('audio') as HTMLAudioElement;
-
-
-
-        if (audio) {
-            audio.src = url;
-
-
-            audio.play().catch(error => {
-                console.error('Erro ao reproduzir áudio:', error);
-            });
-        }
-
-    }
-
-    // if (music) {
-    //     useEffect(() => {
-    //         playAudio(music);
-    //     }, [])
-    // }
-
-
-
-
-
     var bgColor = estiloBackground;
 
-    if (status == 'pago') {
+    if (status === 'pago') {
         document.body.style.backgroundColor = estiloBackground || '#021935';
     }
 
 
-    const [tempo, setTempo] = useState('');
-
-
-
 
     useEffect(() => {
-
         if (urlFotos.length === 0) return;
 
         if (typeof urlFotos[0] === 'string') {
@@ -78,30 +47,11 @@ export default function BrowserMockup({ url, title, description, dataInicio, url
             const fileUrls = (urlFotos as File[]).map((f) => URL.createObjectURL(f))
             setFotosState(fileUrls)
         }
-
-
     }, [urlFotos]);
 
 
 
-
-    const [indexAtual, setIndexAtual] = useState(0);
-
-    const irParaSlide = (i: number) => setIndexAtual(i);
-
-
-
-
-
-
-    useEffect(() => {
-        const intervalo = setInterval(() => {
-            setIndexAtual((prev) => (prev + 1) % urlFotos.length);
-        }, 4000);
-
-        return () => clearInterval(intervalo);
-    }, [urlFotos.length]);
-
+    const [tempo, setTempo] = useState('');
 
 
 
@@ -165,6 +115,10 @@ export default function BrowserMockup({ url, title, description, dataInicio, url
 
 
     return (
+
+
+
+
         <div style={{
             backgroundColor: bgColor,
         }}
@@ -172,13 +126,16 @@ export default function BrowserMockup({ url, title, description, dataInicio, url
 
             className={`block justify-center items-center mb-12
                 ${status == 'pago' ? (
-                    'w-full h-full'
+                    'w-[420px] h-full'
                 ) : (
                     ' w-[370px] h-[50%] border border-white/10 shadow-xl'
                 )}
          text-white  mt-12 mx-auto
           rounded-xl overflow-hidden 
             mx-auto`}>
+
+
+
 
 
 
@@ -202,80 +159,10 @@ export default function BrowserMockup({ url, title, description, dataInicio, url
 
             <div className="flex flex-col items-center justify-center p-6 min-h-[300px] ">
 
-                {fotosState.length > 0 ? (
 
 
 
-
-
-                    <div className="w-full h-full  flex items-center justify-center">
-
-
-                        {/* <div> */}
-
-
-
-
-                        {(fotosState.length === 1) ? (
-
-                            <img
-                                src={(fotosState[0])}
-                                alt="Foto do Casal"
-                                className="w-64 h-64 object-cover rounded-sm "
-                            />
-                        ) : (
-
-                            <div className="relative w-full h-full overflow-hidden">
-
-                                {estiloFoto === 'classico' && (
-                                    <div className='w-[80%] mx-auto h-full'>
-                                        <Classico fotos={fotosState} />
-                                    </div>
-                                )}
-
-                                {estiloFoto === 'carrossel' && (
-                                    <div className='w-full mx-auto h-full'>
-                                        <Carrossel fotos={fotosState} />
-                                    </div>
-
-                                )}
-
-                                {estiloFoto === 'cubo' && (
-                                    <div className='w-[full] mx-auto h-full'>
-                                        <Cubo fotos={fotosState} />
-                                    </div>
-                                )}
-
-
-                                {estiloFoto === 'romantico' && (
-                                    <div className='w-[full] mx-auto h-full'>
-                                        <Romantico fotos={fotosState} />
-                                    </div>
-                                )}
-
-
-                            </div>
-                        )
-                        }
-
-
-
-
-
-
-
-
-
-                    </div>
-
-
-                ) : (
-                    <div className="w-[200px] h-[250px] rounded-sm border border-pink-500 flex items-center justify-center">
-                        <img className="" width="80" height="80" src="https://img.icons8.com/comic/100/ffffff/camera.png" alt="camera" />
-                    </div>
-                )}
-
-
+                {Fotos(fotosState, estiloFoto)}
 
 
                 <h2 className='mt-4 text-xl font-semibold'>{title}</h2>
@@ -295,13 +182,18 @@ export default function BrowserMockup({ url, title, description, dataInicio, url
                 )}
 
 
-            </div>
-            <audio className='' id='audio'>
-                <source type="audio/mpeg" />
-                Seu navegador não suporta o elemento de áudio.
-            </audio>
 
+            </div>
+
+            {status == 'pago' && (
+                <div className="flex flex-col items-center justify-center mt-8">
+                    <CustomAudioPlayer src={music} />
+                </div>
+
+
+            )}
 
         </div >
+
     );
 }

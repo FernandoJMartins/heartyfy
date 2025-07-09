@@ -141,7 +141,7 @@ export default function Root() {
             setMaxFiles(4);
             setStep(1);
             setValue(20);
-            setUnitPrice(178.80); // Valor do plano anual
+            setUnitPrice(14.90); // Valor do plano anual
         } else if (plano === 'vitalicio') {
             setPlano('vitalicio');
             setMaxFiles(8);

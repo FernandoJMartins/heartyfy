@@ -20,30 +20,11 @@ export async function handleMercadoPagoPayment(paymentData: PaymentResponse) {
         title,
         description,
         data_inicio,
-        fotos,
         estilo_foto,
         estilo_background,
         url_fotos,
-        music,
-        status } = metadata;
+        music } = metadata;
 
-
-    // const { createFirebaseCheckout } = useFirebase();
-
-
-    console.log("Chamando firebase com dados:");
-    console.log({
-        slug,
-        title,
-        description,
-        data_inicio,
-        estilo_foto,
-        fotos,
-        estilo_background,
-        url_fotos,
-        music,
-        status: 'pago'
-    });
 
 
     try {

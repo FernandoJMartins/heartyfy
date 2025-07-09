@@ -10,8 +10,19 @@ export default function Step0({ escolherPlano }: Step0Props) {
 
 
     return (
-        <div className="flex flex-col items-center space-y-6 mt-10">
-            <h1 className="text-white text-xl font-bold mx-auto justify-center items-center">Escolha o plano do seu presente</h1>
+        <div className="flex flex-col items-center space-y-3 mt-15">
+
+            <div className="w-[80%]">
+
+                <h1 className="text-white text-3xl
+                             font-bold mb-4
+                             rounded-3xl 
+                             ">Escolha o plano do seu Presente</h1>
+                <h3 className='mb-7'>Cada plano é um gesto de amor — escolha o que mais combina com vocês.
+
+                </h3>
+            </div>
+
             <div className="flex flex-col sm:flex-row gap-4 w-[80%]">
 
 
