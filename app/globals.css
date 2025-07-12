@@ -142,3 +142,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 #planos li {
   font-family: 'garet';
 }
+
+ul li {
+  list-style: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.75rem;
+  color: white;
+  font-family: 'garet';
+}

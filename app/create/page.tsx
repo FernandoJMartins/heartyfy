@@ -115,7 +115,7 @@ export default function Root() {
     const [description, setDescription] = useState('');
     const [dataInicio, setDataInicio] = useState('');
 
-    const [unit_price, setUnitPrice] = useState(16.90); // Valor do produto
+    const [unit_price, setUnitPrice] = useState(19.90); // Valor do produto
 
 
 
@@ -141,7 +141,7 @@ export default function Root() {
             setMaxFiles(4);
             setStep(1);
             setValue(20);
-            setUnitPrice(14.90); // Valor do plano anual
+            setUnitPrice(19.90); // Valor do plano anual
         } else if (plano === 'vitalicio') {
             setPlano('vitalicio');
             setMaxFiles(8);

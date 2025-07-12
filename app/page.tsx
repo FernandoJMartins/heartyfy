@@ -6,7 +6,7 @@ export default function Root() {
   return (
 
 
-    <div>
+    <div className="w-full overflow-x-hidden">
       <Navbar />
       <Home />
 

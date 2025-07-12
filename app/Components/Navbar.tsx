@@ -13,11 +13,15 @@ export default function Navbar() {
 
                 <ul className=" hidden lg:flex gap-4">
                     <div className="row-start-10 flex justify-center gap-4 " id='navbar'>
-                        <li>Preços</li>
-                        <li>Sobre</li>
-                        <li>Contato</li>
-                        <li>Como Fazer</li>
-                        <li>Feedbacks</li>
+                        <li className="text-white cursor-pointer">
+                            <a className="cursor-pointer">Preços</a>
+                        </li>
+                        <li className="text-white cursor-pointer">
+                            <a className="cursor-pointer" href='#comoFazer'>Como Fazer</a>
+                        </li>
+                        <li className="text-white cursor-pointer">
+                            <a className="cursor-pointer" href='#feedbacks'>Feedbacks</a>
+                        </li>
 
                     </div>
                 </ul >
