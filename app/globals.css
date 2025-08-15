@@ -174,3 +174,11 @@ ul li {
   box-shadow: 15px 15px 30px #150026,
     -15px -15px 30px #150026;
 }
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
