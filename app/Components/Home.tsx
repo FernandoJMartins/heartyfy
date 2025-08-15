@@ -146,11 +146,11 @@ export default function Home() {
 
 
     return (
-        <main id='home' className="min-h-screen w-full text-white overflow-x-hidden">
+        <main id='home' className=" min-h-screen w-full text-white overflow-x-hidden">
 
 
             {/* Hero */}
-            <section className="px-6 py-24 text-center w-full">
+            <section className="px-6 py-24 text-center w-full ">
                 <h1 id='tituloPrincipal' className="w-full text-4xl md:text-6xl font-bold mb-8 mt-2 md:w-[60%] mx-auto" style={{ fontFamily: 'telegraf' }}>
                     Surpreenda com um Presente Digital <span className='text-red-500'>inesquecível.</span>
                 </h1>
@@ -174,12 +174,12 @@ export default function Home() {
 
 
             {/* Etapas de Criação */}
-            <section className="py-20 px-6  bg-gradient-to-b from-[#021935] to-[#1f0034] w-full">
+            <section className="py-20 px-6 w-full">
                 <h1 id='comoFazer' className="text-3xl font-bold text-center mb-14" >
                     Como fazer?
                 </h1>
-                <div className="flex flex-wrap justify-center items-start gap-4 w-[90%] 
-                 md:w-[90%] mx-auto md:gap-0">
+                <div id='grid' className="grid grid-cols-1 gap-3 w-[90%] 
+                 md:w-[60%] mx-auto my-auto md:gap-4 md:grid md:grid-cols-2 md:gap-4">
                     {[
                         {
                             icon: "/icons/2.svg",
@@ -206,22 +206,23 @@ export default function Home() {
 
                         },
                     ].map(({ icon, title, text }, index) => (
-                        <div
+                        <div id='card'
                             key={index}
-                            className={`bg-gradient-to-br from-pink-600 to-pink-700 flex flex-col items-center justify-center
-               text-center rounded-xl py-6 px-7 mx-auto border w-full h-[250px] 
-               md:w-[300px] md:h-[300px] md:px-5 max-w-[400px] shadow-md}`}
+                            className={`bg-[#3B1A50] flex flex-col items-center justify-center
+               text-center rounded-xl py-6 px-7 mx-auto  w-[full] h-[250px] 
+               md:w-[400px] md:h-[300px] md:px-5 max-w-[700px] shadow-md}
+            `}
                         >
                             <Image
                                 src={icon}
                                 alt={`Ícone ${title}`}
-                                width={60}
-                                height={60}
+                                width={55}
+                                height={55}
                                 className="mb-4"
                             />
-                            <div className='align-center flex flex-col items-center'>
-                                <h2 className="text-2xl font-semibold mb-4">{title}</h2>
-                                <h3 className="text-lg">{text}</h3>
+                            <div className='align-center flex flex-col items-center text-black-500'>
+                                <h2 id='text-card' className="text-2xl font-semibold mb-4">{title}</h2>
+                                <h3 id='text-card' className="text-lg">{text}</h3>
                             </div>
                         </div>
                     ))}
@@ -229,7 +230,7 @@ export default function Home() {
             </section>
 
 
-            <section className="pb-12 px-6 bg-[#1f0034]">
+            <section className="pb-12 px-6 ">
 
                 <div className="flex flex-wrap justify-center items-start gap-4 w-[90%] md:w-full mx-auto">
                     <h1 className='text-3xl align-center w-full text-center mb-12 md:w-[30%] mt-32'>Uma declaração de amor que ficará para <span className='text-red-500'>sempre.</span></h1>
@@ -246,14 +247,14 @@ export default function Home() {
             </section>
 
             {/* Prova Social */}
-            <section id='feedbacks' className="py-20 px-6  bg-[#1f0034] ">
+            <section id='feedbacks' className="py-20 px-6">
                 <h1 className="text-3xl font-bold text-center w-full" >
                     O que estão dizendo?
                 </h1>
 
             </section>
 
-            <div className='bg-[#1f0034] pb-4 border-none  w-full'>
+            <div className=' pb-4 border-none  w-full'>
 
 
 
@@ -263,7 +264,7 @@ export default function Home() {
             </div>
 
             {/* CTA final */}
-            <section className="py-20 px-6 text-center  bg-gradient-to-b from-[#1f0034] to-[#021935]">
+            <section className="py-20 px-6 text-center  ">
                 <h1 className="text-3xl font-bold mb-4" >
                     Comece agora sua surpresa <span className='text-red-500'>inesquecível.</span>
                 </h1>

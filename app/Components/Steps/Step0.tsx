@@ -23,15 +23,14 @@ export default function Step0({ escolherPlano }: Step0Props) {
                 </h3>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 w-[80%]">
+            <div className="flex flex-col mx-auto justify-center sm:flex-row gap-4 w-[80%]  md:gap-16">
 
 
 
                 <div onClick={() => { escolherPlano('vitalicio'); window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }) }}
-                    className="relative z-10 rounded-2xl p-5 border-4 border-transparent bg-[#e70000]
-                     text-white shadow-sm shadow-red-700 hover:shadow-red-500
-                     transition-transform duration-300 transform hover:scale-[1.05] hover:rotate-1 bg-clip-padding">
-
+                    className="mt-4 relative z-10 rounded-2xl p-5
+                      bg-[#56346C] text-white shadow-sm
+                      shadow-pink-700 cursor-pointer md:w-[400px] " id='card'>
 
                     <div className=" z-11 absolute top-[-12px] right-[-12px] bg-yellow-400 text-black text-xs font-bold px-3 py-1 rounded-full shadow-md animate-pulse">
                         🔥 Mais Comprado
@@ -81,10 +80,8 @@ export default function Step0({ escolherPlano }: Step0Props) {
 
                 <div onClick={() => { escolherPlano('anual'); window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }) }}
                     className="mt-4  relative z-10 rounded-2xl p-5
-                     border-4 border-transparent bg-gradient-to-br
-                      from-pink-600 to-pink-700 text-white shadow-sm
-                      shadow-pink-700 hover:shadow-pink-500 transition-transform duration-300
-                       transform hover:scale-[1.05] hover:rotate-1 bg-clip-padding">
+                      bg-[#3B1A50] text-white shadow-sm
+                      shadow-pink-700 cursor-pointer md:w-[400px] " id='card'>
 
 
                     <div className=" z-11 absolute top-[-12px] right-[-12px] bg-green-400 text-black text-xs font-bold px-3 py-1 rounded-full shadow-md animate-pulse">
@@ -133,11 +130,9 @@ export default function Step0({ escolherPlano }: Step0Props) {
 
 
                 <div onClick={() => { escolherPlano('mensal'); window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }) }}
-                    className="mt-4 relative z-10 rounded-2xl p-5 border-4 
-                    border-transparent bg-gradient-to-br from-pink-600 to-pink-700
-                    text-white shadow-sm shadow-pink-700 hover:shadow-pink-500
-                    transition-transform duration-300 transform hover:scale-[1.05]
-                    hover:rotate-1 bg-clip-padding">
+                    className="mt-4  relative z-10 rounded-2xl p-5
+                      bg-[#3B1A50] text-white shadow-sm
+                      shadow-pink-700 cursor-pointer md:w-[400px] " id='card'>
                     <h1 className="text-xl font-bold">Mensal</h1>
                     <p className="text-sm mb-4 italic">Mensalidade – renovação</p>
 
@@ -160,16 +155,16 @@ export default function Step0({ escolherPlano }: Step0Props) {
                         </svg><strong>1 imagem</strong></li>
                         <li className='flex text-[18px] gap-2'>
 
-                            <img className='ml-[-1.1px] bg-white rounded-4xl p-[0.01px]' width="26" height="26" src="https://img.icons8.com/ios-glyphs/30/e70000/cancel.png" alt="cancel" />
+                            <img width="26" height="20" src="https://img.icons8.com/ios-glyphs/30/e70000/cancel.png" alt="cancel" />
                             Música personalizada</li>
                         <li className='flex text-[18px] gap-2'>
 
-                            <img className='ml-[-1.1px] bg-white  rounded-4xl p-[0.01px]' width="26" height="26" src="https://img.icons8.com/ios-glyphs/30/e70000/cancel.png" alt="cancel" />
+                            <img width="26" height="20" src="https://img.icons8.com/ios-glyphs/30/e70000/cancel.png" alt="cancel" />
 
                             Fundo personalizável</li>
                         <li className='flex text-[18px] gap-2'>
 
-                            <img className='ml-[-1.1px] bg-white  rounded-4xl p-[0.01px]' width="26" height="26" src="https://img.icons8.com/ios-glyphs/30/e70000/cancel.png" alt="cancel" />
+                            <img width="26" height="20" src="https://img.icons8.com/ios-glyphs/30/e70000/cancel.png" alt="cancel" />
 
 
                             Animações exclusivas</li>

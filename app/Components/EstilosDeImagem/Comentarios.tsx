@@ -65,9 +65,9 @@ export default function Comentarios({ depoimentos, speed }: ComentariosProps) {
                     key={i}
                     className="w-[50px] flex justify-center" // força largura fixa do slide
                 >
-                    <div className="bg-gradient-to-br bg-gradient-to-br from-pink-600 to-pink-700 text-white p-6 rounded-xl shadow-lg
+                    <div className=" bg-[#3B1A50] text-white p-6 rounded-xl shadow-lg
         h-[300px] flex flex-col justify-between min-h-[200px] w-full 
-        hover:border"
+       "
                     >
 
 

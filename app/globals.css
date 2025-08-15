@@ -46,7 +46,7 @@
 
 body {
 
-  background-color: #021935;
+  background-color: #1f0034;
 
 }
 
@@ -150,4 +150,27 @@ ul li {
   line-height: 1.75rem;
   color: white;
   font-family: 'garet';
+}
+
+/* #text-black {
+  color: black
+} */
+
+#text-card {
+  z-index: 2;
+  position: relative;
+  margin: 12px 0 4px 0;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 2;
+  color: var(--card-label-color);
+}
+
+
+#card {
+
+  border-radius: 30px;
+  box-shadow: 15px 15px 30px #150026,
+    -15px -15px 30px #150026;
 }
