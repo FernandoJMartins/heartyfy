@@ -151,10 +151,10 @@ export default function Home() {
 
             {/* Hero */}
             <section className="px-6 py-24 text-center w-full ">
-                <h1 id='tituloPrincipal' className="w-full text-4xl md:text-6xl font-bold mb-8 mt-2 md:w-[60%] mx-auto" style={{ fontFamily: 'telegraf' }}>
+                <h1 id='tituloPrincipal' className="w-full text-3xl md:text-5xl font-bold mb-8 mt-2 md:w-[60%] mx-auto" style={{ fontFamily: 'telegraf' }}>
                     Surpreenda com um Presente Digital <span className='text-red-500'>inesquecível.</span>
                 </h1>
-                <p className="text-lg md:text-xl mt-4 w-full md:w-[30%] mx-auto mb-8">
+                <p className="text-lg md:text-xl mt-4 w-[80%] md:w-[30%] mx-auto mb-8">
 
                     Transforme emoções em experiências digitais únicas com fotos, música e QR Code. Personalize com o seu toque.
                 </p>
