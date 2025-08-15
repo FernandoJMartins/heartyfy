@@ -154,10 +154,10 @@ export default function Home() {
                 <h1 id='tituloPrincipal' className="w-full text-3xl md:text-5xl font-bold mb-8 mt-2 md:w-[60%] mx-auto" style={{ fontFamily: 'telegraf' }}>
                     Surpreenda com um Presente Digital <span className='text-red-500'>inesquecível.</span>
                 </h1>
-                <p className="text-lg md:text-xl mt-4 w-[80%] md:w-[30%] mx-auto mb-8">
+                <h3 className="text-md font-semibold mb-4 md:flex md:text-xl mt-4 w-[80%] md:w-[30%] mx-auto mb-8">
 
                     Transforme emoções em experiências digitais únicas com fotos, música e QR Code. Personalize com o seu toque.
-                </p>
+                </h3>
                 <a
                     href="/create"
                     className="inline-block mt-4 bg-[#ff00a0] hover:bg-[#CB1E97] transition text-white font-semibold py-5 px-6 rounded-xl text-lg"
